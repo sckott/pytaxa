@@ -9,10 +9,10 @@ python:
   - "3.7-dev"
 
 install:
-  - pip install coveralls
+  - pip install codecov
 
 script:
   - nosetests -v --cover-package=pytaxa
 
 after_success:
-  - coveralls --verbose
+  - codecov
