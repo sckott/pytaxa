@@ -1,4 +1,4 @@
-"""Tests for Taxa.taxon_name"""
+"""Tests for taxon_name"""
 import os
 from nose.tools import *
 from pytaxa import constructors as c
