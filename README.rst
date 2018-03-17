@@ -44,4 +44,4 @@ Meta
    :target: https://travis-ci.org/sckott/pytaxa
 
 .. |coverage| image:: https://codecov.io/gh/sckott/pytaxa/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/ropensci/taxa
+   :target: https://codecov.io/gh/sckott/pytaxa
