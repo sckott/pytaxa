@@ -11,7 +11,7 @@ def test_taxon_name():
     assert 'Helianthus' == res['name']
     assert None == res['database']
 
-def test_taxon_name_database():
+def test_taxon_name_database_param():
     "taxon_name - param: name"
     res = c.taxon_name('Poa', 'ncbi')
     assert dict == res.__class__

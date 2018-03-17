@@ -1,8 +1,8 @@
-def taxon_database(name, url = None, description = None, id_regex = None):
+def taxon_database(database, url = None, description = None, id_regex = None):
     '''
     Make a taxon database
 
-    :param name: [String] A database name
+    :param database: [String] A database name
     :param url: [String] The database URL
     :param description: [String] A description
     :param id_regex: [String] id regex
@@ -17,7 +17,7 @@ def taxon_database(name, url = None, description = None, id_regex = None):
             "NCBI Taxonomy Database", 
             "*")
     '''
-    return {"name": name, "url": url, 
+    return {"database": database, "url": url, 
         "description": description, "id_regex": id_regex}
 
 def taxon_name(name, database = None):
