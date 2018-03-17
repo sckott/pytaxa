@@ -84,5 +84,5 @@ Indices and tables
 .. |travis| image:: https://travis-ci.org/sckott/pytaxa.svg
    :target: https://travis-ci.org/sckott/pytaxa
 
-.. |coverage| image:: https://coveralls.io/repos/sckott/pytaxa/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/pytaxa?branch=master
+.. |coverage| image:: https://codecov.io/gh/sckott/pytaxa/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/ropensci/taxa
