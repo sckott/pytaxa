@@ -1,24 +1,12 @@
-================================
-habanero |version| documentation
-================================
+==============================
+pytaxa |version| documentation
+==============================
 
 |pypi| |docs| |travis| |coverage|
 
-Python client for the `Crossref API
-<http://www.gbif.org/developer/summary>`_
+more coming ...
 
-Source on GitHub at `sckott/habanero <https://github.com/sckott/habanero>`_
-
-Getting help
-============
-
-Having trouble? Or want to know how to get started?
-
-* Try the :doc:`FAQ <../docs/faq>` -- it's got answers to some common questions.
-* Looking for specific information? Try the :ref:`genindex`
-* Report bugs with habanero in our `issue tracker`_.
-
-.. _issue tracker: https://github.com/sckott/habanero/issues
+.. _issue tracker: https://github.com/sckott/pytaxa/issues
 
 
 Installation
@@ -31,24 +19,7 @@ Installation
    intro/install
 
 :doc:`intro/install`
-    How to install habanero.
-
-
-Docs
-====
-
-.. toctree::
-   :caption: Docs
-   :hidden:
-
-   docs/faq
-   docs/usecases
-
-:doc:`docs/faq`
-    Frequently asked questions.
-
-:doc:`docs/usecases`
-    Usecases for habanero.
+    How to install pytaxa.
 
 
 Modules
@@ -59,25 +30,13 @@ Modules
    :hidden:
 
    modules/intro
-   modules/crossref
-   modules/filters
-   modules/counts
-   modules/cn
+   modules/taxa
 
 :doc:`modules/intro`
-    Introduction to habanero modules.
+    Introduction to pytaxa modules
 
-:doc:`modules/crossref`
-    The crossref module: core Crossref APIs.
-
-:doc:`modules/filters`
-    The filters module: Filters details for use with Crossref module.
-
-:doc:`modules/counts`
-    The counts module: Crossref citation counts.
-
-:doc:`modules/cn`
-    The cn module: Crossref content negotation.
+:doc:`modules/taxa`
+    The Taxa module
 
 
 All the rest
@@ -87,30 +46,26 @@ All the rest
    :caption: All the rest
    :hidden:
 
-   exceptions
    changelog_link
    contributors
    contributing
    conduct
    license
 
-:doc:`exceptions`
-    Exceptions.
-
 :doc:`changelog_link`
-    See what has changed in recent habanero versions.
+    See what has changed in recent pytaxa versions.
 
 :doc:`contributors`
-    habanero contributors.
+    pytaxa contributors.
 
 :doc:`contributing`
-    Learn how to contribute to the habanero project.
+    Learn how to contribute to the pytaxa project.
 
 :doc:`conduct`
     Expected behavior in this community. By participating in this project you agree to abide by its terms.
 
 :doc:`license`
-    The habanero license.
+    The pytaxa license.
 
 Indices and tables
 ------------------
@@ -120,14 +75,14 @@ Indices and tables
 * :ref:`search`
 
 
-.. |pypi| image:: https://img.shields.io/pypi/v/habanero.svg
-   :target: https://pypi.python.org/pypi/habanero
+.. |pypi| image:: https://img.shields.io/pypi/v/pytaxa.svg
+   :target: https://pypi.python.org/pypi/pytaxa
 
-.. |docs| image:: https://readthedocs.org/projects/habanero/badge/?version=latest
-   :target: http://habanero.rtfd.org/
+.. |docs| image:: https://readthedocs.org/projects/pytaxa/badge/?version=latest
+   :target: http://pytaxa.rtfd.org/
 
-.. |travis| image:: https://travis-ci.org/sckott/habanero.svg
-   :target: https://travis-ci.org/sckott/habanero
+.. |travis| image:: https://travis-ci.org/sckott/pytaxa.svg
+   :target: https://travis-ci.org/sckott/pytaxa
 
-.. |coverage| image:: https://coveralls.io/repos/sckott/habanero/badge.svg?branch=master&service=github
-   :target: https://coveralls.io/github/sckott/habanero?branch=master
+.. |coverage| image:: https://coveralls.io/repos/sckott/pytaxa/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/sckott/pytaxa?branch=master

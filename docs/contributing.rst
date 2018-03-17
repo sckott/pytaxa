@@ -6,14 +6,14 @@ Contributing
 .. important::
 
     Double check you are reading the most recent version of this document at
-    http://habanero.readthedocs.io/en/latest/index.html
+    http://pytaxa.readthedocs.io/en/latest/index.html
 
 Bug reports
 -----------
 
 Please report bug reports on our `issue tracker`_.
 
-.. _issue tracker: https://github.com/sckott/habanero/issues
+.. _issue tracker: https://github.com/sckott/pytaxa/issues
 
 
 Feature requests

@@ -5,17 +5,6 @@ pytaxa
 
 more coming ...
 
-Rate limits
------------
-
-See the headers `X-Rate-Limit-Limit` and `X-Rate-Limit-Interval` for current rate limits.
-
-The Polite Pool
----------------
-
-To get in the polite pool it's a good idea now to include a `mailto` email
-address. See docs for more information.
-
 
 Installation
 ============

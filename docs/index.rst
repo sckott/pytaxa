@@ -4,19 +4,7 @@ pytaxa |version| documentation
 
 |pypi| |docs| |travis| |coverage|
 
-Python client for the `Crossref API
-<http://www.gbif.org/developer/summary>`_
-
-Source on GitHub at `sckott/pytaxa <https://github.com/sckott/pytaxa>`_
-
-Getting help
-============
-
-Having trouble? Or want to know how to get started?
-
-* Try the :doc:`FAQ <../docs/faq>` -- it's got answers to some common questions.
-* Looking for specific information? Try the :ref:`genindex`
-* Report bugs with pytaxa in our `issue tracker`_.
+more coming ...
 
 .. _issue tracker: https://github.com/sckott/pytaxa/issues
 
@@ -34,23 +22,6 @@ Installation
     How to install pytaxa.
 
 
-Docs
-====
-
-.. toctree::
-   :caption: Docs
-   :hidden:
-
-   docs/faq
-   docs/usecases
-
-:doc:`docs/faq`
-    Frequently asked questions.
-
-:doc:`docs/usecases`
-    Usecases for pytaxa.
-
-
 Modules
 =======
 
@@ -59,25 +30,13 @@ Modules
    :hidden:
 
    modules/intro
-   modules/crossref
-   modules/filters
-   modules/counts
-   modules/cn
+   modules/taxa
 
 :doc:`modules/intro`
-    Introduction to pytaxa modules.
+    Introduction to pytaxa modules
 
-:doc:`modules/crossref`
-    The crossref module: core Crossref APIs.
-
-:doc:`modules/filters`
-    The filters module: Filters details for use with Crossref module.
-
-:doc:`modules/counts`
-    The counts module: Crossref citation counts.
-
-:doc:`modules/cn`
-    The cn module: Crossref content negotation.
+:doc:`modules/taxa`
+    The Taxa module
 
 
 All the rest
@@ -87,15 +46,11 @@ All the rest
    :caption: All the rest
    :hidden:
 
-   exceptions
    changelog_link
    contributors
    contributing
    conduct
    license
-
-:doc:`exceptions`
-    Exceptions.
 
 :doc:`changelog_link`
     See what has changed in recent pytaxa versions.

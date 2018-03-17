@@ -21,7 +21,7 @@ Usage::
 '''
 
 __title__ = 'pytaxa'
-__version__ = '0.0.1.9100'
+__version__ = '0.0.1.1'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 

@@ -1,10 +1,10 @@
 .. _intro-modules:
 
-================
-habanero modules
-================
+==============
+pytaxa modules
+==============
 
-`habanero` is split up into modules.
+`pytaxa` is split up into modules.
 
 * Crossref - Core Crossref APIs for search, journals, members, etc.
 * Counts - Crossref citation counts
