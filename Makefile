@@ -9,15 +9,14 @@ install:
 	python3 setup.py install
 
 test:
-	nosetests -v --with-coverage --cover-package=habanero
+	nosetests -v --with-coverage --cover-package=pytaxa
 
 test3:
-	python3 -m "nose" -v --with-coverage --cover-package=habanero
+	python3 -m "nose" -v --with-coverage --cover-package=pytaxa
 
 docs:
 	cd docs;\
 	make html
-	# open _build/html/index.html
 
 distclean:
 	rm dist/*
