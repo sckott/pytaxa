@@ -30,13 +30,13 @@ Modules
    :hidden:
 
    modules/intro
-   modules/taxa
+   modules/constructors
 
 :doc:`modules/intro`
     Introduction to pytaxa modules
 
-:doc:`modules/taxa`
-    The Taxa module
+:doc:`modules/constructors`
+    The constructors module
 
 
 All the rest

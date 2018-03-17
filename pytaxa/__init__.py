@@ -25,4 +25,4 @@ __version__ = '0.0.1.1'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
-from .taxa import Taxa
+from .constructors import taxon_name, taxon_database, taxon_id, taxon_rank

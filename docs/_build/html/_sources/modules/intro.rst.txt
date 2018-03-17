@@ -6,8 +6,7 @@ pytaxa modules
 
 `pytaxa` is split up into modules.
 
-* Crossref - Core Crossref APIs for search, journals, members, etc.
-* Counts - Crossref citation counts
-* Content negotation - Content negotation
+* Constructors - xxx
+* other stuff ...
 
 You can import the entire library, or each module individually as needed.
