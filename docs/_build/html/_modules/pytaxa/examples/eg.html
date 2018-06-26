@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pytaxa.examples.eg &mdash; pytaxa 0.0.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pytaxa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/install.html">Installation guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/intro.html">pytaxa modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/constructors.html">constructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/examples.html">examples module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All the rest</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog_link.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Contributor Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pytaxa</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pytaxa.examples.eg</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pytaxa.examples.eg</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">..constructors</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
+<span class="kn">from</span> <span class="nn">..taxa</span> <span class="k">import</span> <span class="n">Taxon</span><span class="p">,</span><span class="n">Hierarchy</span>
+
+<span class="k">def</span> <span class="nf">eg_hierarchy</span><span class="p">(</span><span class="n">which</span> <span class="o">=</span> <span class="s2">&quot;poa&quot;</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">which</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;poa&#39;</span><span class="p">,</span> <span class="s1">&#39;puma&#39;</span><span class="p">,</span> <span class="s1">&#39;salmo&#39;</span><span class="p">]:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;which&#39; must be one of &#39;poa&#39;, &#39;puma&#39;, or &#39;salmo&#39;&quot;</span><span class="p">)</span>
+
+  <span class="n">db</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_database</span><span class="p">(</span><span class="s2">&quot;ncbi&quot;</span><span class="p">,</span> 
+      <span class="s2">&quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;NCBI Taxonomy Database&quot;</span><span class="p">,</span> 
+      <span class="s2">&quot;*&quot;</span><span class="p">)</span>
+  
+  <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="s2">&quot;poa&quot;</span><span class="p">:</span>
+    <span class="n">tx1</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poaceae&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">4479</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx2</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;genus&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx3</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa annua&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">93036</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Hierarchy</span><span class="p">(</span><span class="n">tx3</span><span class="p">,</span> <span class="n">tx1</span><span class="p">,</span> <span class="n">tx2</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">which</span> <span class="o">==</span> <span class="s2">&quot;puma&quot;</span><span class="p">:</span>
+    <span class="n">tx1</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Felidae&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">9681</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx2</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Puma&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;genus&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">146712</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx3</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Puma concolor&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">9696</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Hierarchy</span><span class="p">(</span><span class="n">tx3</span><span class="p">,</span> <span class="n">tx1</span><span class="p">,</span> <span class="n">tx2</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">tx1</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Chordata&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;phylum&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">158852</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx2</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Vertebrata&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;subphylum&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">331030</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx3</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Teleostei&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">161105</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx4</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Salmonidae&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">161931</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx5</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Salmo&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;genus&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">161994</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="n">tx6</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Salmo salar&quot;</span><span class="p">),</span> 
+      <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">161996</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Hierarchy</span><span class="p">(</span><span class="n">tx1</span><span class="p">,</span> <span class="n">tx2</span><span class="p">,</span> <span class="n">tx3</span><span class="p">,</span> <span class="n">tx4</span><span class="p">,</span> <span class="n">tx5</span><span class="p">,</span> <span class="n">tx6</span><span class="p">)</span>
+
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Scott Chamberlain.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

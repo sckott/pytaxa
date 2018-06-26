@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytaxa.taxa.taxa &mdash; pytaxa 0.0.1.1 documentation</title>
+  <title>pytaxa.taxa.taxa &mdash; pytaxa 0.0.1.2 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.1.1
+                0.0.1.2
               </div>
             
           
@@ -97,6 +97,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/intro.html">pytaxa modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/constructors.html">constructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/examples.html">examples module</a></li>
 </ul>
 <p class="caption"><span class="caption-text">All the rest</span></p>
 <ul>
@@ -169,44 +171,66 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pytaxa.taxa.taxa</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="o">*</span>
 
 <span class="k">class</span> <span class="nc">Taxa</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Taxa: Class for Taxonomic names</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Taxa class</span>
 
-<span class="sd">    |</span>
-<span class="sd">    |</span>
-<span class="sd">    |</span>
+<span class="sd">    Stores one or more `taxon` objects. Prints first 10 taxa </span>
+<span class="sd">    for brevity sake.</span>
 
-<span class="sd">    **Included methods**</span>
+<span class="sd">    Usage:::</span>
+<span class="sd">        </span>
+<span class="sd">        # make a taxon</span>
+<span class="sd">        from pytaxa import constructors as cs</span>
+<span class="sd">        name = cs.taxon_name(&quot;Poa&quot;)</span>
+<span class="sd">        rank = cs.taxon_rank(&quot;genus&quot;, &quot;ncbi&quot;)</span>
+<span class="sd">        db = cs.taxon_database(&quot;ncbi&quot;, </span>
+<span class="sd">            &quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;,</span>
+<span class="sd">            &quot;NCBI Taxonomy Database&quot;, </span>
+<span class="sd">            &quot;*&quot;)</span>
+<span class="sd">        id = cs.taxon_id(12345, db)</span>
+<span class="sd">        tx = cs.taxon(name, rank, id, &quot;L.&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">        # combine many taxon&#39;s into taxa</span>
+<span class="sd">        from pytaxa import Taxa</span>
+<span class="sd">        Taxa(tx)</span>
+<span class="sd">        bb = Taxa(tx, tx)</span>
 
-<span class="sd">    * /taxon_name - :func:`~pytaxa.Taxa.taxon_name`</span>
+<span class="sd">        # handles empty taxon objects</span>
+<span class="sd">        Taxa(tx, cs.taxon(None), tx)</span>
 
-<span class="sd">    |</span>
-<span class="sd">    |</span>
-<span class="sd">    |</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<span class="sd">        # various accessors</span>
+<span class="sd">        bb = Taxa(tx, tx)</span>
+<span class="sd">        len(bb)</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">):</span>
+      <span class="nb">super</span><span class="p">(</span><span class="n">Taxa</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Taxa.taxon_name"><a class="viewcode-back" href="../../../modules/taxa.html#pytaxa.Taxa.taxon_name">[docs]</a>    <span class="k">def</span> <span class="nf">taxon_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Make a taxon name</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">no</span> <span class="o">=</span> <span class="s2">&quot;&lt;taxa&gt;</span><span class="se">\n</span><span class="s2">  no. taxa: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">print_taxon</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+      <span class="n">mssg</span> <span class="o">=</span> <span class="n">no</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">mssg</span>
 
-<span class="sd">        :param name: [Array] A taxonomic name</span>
-<span class="sd">        :param database: [String] A database name</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span>
 
-<span class="sd">        :return: A dict</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">print_taxon</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span> 
+        <span class="k">return</span> <span class="s2">&quot;empty&quot;</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39; / &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+          <span class="n">gt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> 
+          <span class="n">gt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+          <span class="nb">str</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+        <span class="p">])</span>
 
-<span class="sd">        Usage::</span>
-
-<span class="sd">            from pytaxa import Taxa</span>
-<span class="sd">            x = Taxa()</span>
-<span class="sd">            x.taxon_name(&quot;Poa&quot;)</span>
-<span class="sd">            x.taxon_name(&quot;Poa&quot;, &quot;ncbi&quot;)</span>
-<span class="sd">        &#39;&#39;&#39;</span></div>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="n">database</span><span class="p">}</span>
 </pre></div>
 
            </div>
@@ -243,7 +267,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.1.1',
+            VERSION:'0.0.1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

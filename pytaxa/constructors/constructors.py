@@ -34,6 +34,7 @@ def taxon_name(name, database = None):
         from pytaxa import constructors as cs
         cs.taxon_name("Poa")
         cs.taxon_name("Poa", "ncbi")
+        cs.taxon_name(None)
     '''
     return {"name": name, "database": database}
 
@@ -68,5 +69,10 @@ def taxon_id(id, database = None):
         from pytaxa import constructors as cs
         cs.taxon_id(12345)
         cs.taxon_id(12345, "ncbi")
+        db = cs.taxon_database("ncbi", 
+            "http://www.ncbi.nlm.nih.gov/taxonomy",
+            "NCBI Taxonomy Database", 
+            "*")
+        cs.taxon_id(12345, db)
     '''
     return {"id": id, "database": database}

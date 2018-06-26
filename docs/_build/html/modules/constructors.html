@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>constructors module &mdash; pytaxa 0.0.1.1 documentation</title>
+  <title>constructors module &mdash; pytaxa 0.0.1.2 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.1 documentation" href="../index.html"/>
+    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../index.html"/>
         <link rel="next" title="Changelog" href="../changelog_link.html"/>
         <link rel="prev" title="pytaxa modules" href="intro.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1.1
+                0.0.1.2
               </div>
             
           
@@ -200,7 +200,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> – [String] A database name</li>
+<li><strong>database</strong> – [String] A database name</li>
 <li><strong>url</strong> – [String] The database URL</li>
 <li><strong>description</strong> – [String] A description</li>
 <li><strong>id_regex</strong> – [String] id regex</li>
@@ -245,6 +245,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
 <span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">)</span>
 <span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">)</span>
+<span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -299,6 +300,11 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
 <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
 <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_database</span><span class="p">(</span><span class="s2">&quot;ncbi&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NCBI Taxonomy Database&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -350,7 +356,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.1.1',
+            VERSION:'0.0.1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pytaxa.taxa.taxon &mdash; pytaxa 0.0.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pytaxa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/install.html">Installation guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/intro.html">pytaxa modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/constructors.html">constructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/examples.html">examples module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All the rest</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog_link.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Contributor Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pytaxa</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pytaxa.taxa.taxon</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pytaxa.taxa.taxon</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">..constructors</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Taxon</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Taxon class</span>
+
+<span class="sd">    Create a `taxon` object</span>
+
+<span class="sd">    Usage:::</span>
+<span class="sd">        </span>
+<span class="sd">        from pytaxa import constructors as cs</span>
+<span class="sd">        from pytaxa import Taxon</span>
+<span class="sd">        name = cs.taxon_name(&quot;Poa&quot;)</span>
+<span class="sd">        rank = cs.taxon_rank(&quot;genus&quot;, &quot;ncbi&quot;)</span>
+<span class="sd">        db = cs.taxon_database(&quot;ncbi&quot;, </span>
+<span class="sd">            &quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;,</span>
+<span class="sd">            &quot;NCBI Taxonomy Database&quot;, </span>
+<span class="sd">            &quot;*&quot;)</span>
+<span class="sd">        id = cs.taxon_id(12345, db)</span>
+<span class="sd">        x = Taxon(name, rank, id, &quot;L.&quot;)</span>
+<span class="sd">        x.is_empty()</span>
+
+<span class="sd">        # null taxon&#39;s</span>
+<span class="sd">        x = Taxon(None)</span>
+<span class="sd">        x</span>
+<span class="sd">        x.is_empty()</span>
+<span class="sd">        Taxon({})</span>
+<span class="sd">        Taxon(None, None, None)</span>
+<span class="sd">        Taxon(None, None, id)</span>
+<span class="sd">        Taxon(None, None, None, &quot;L.&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+      <span class="n">name</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> 
+      <span class="n">rank</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> 
+      <span class="nb">id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> 
+      <span class="n">authority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+
+      <span class="nb">super</span><span class="p">(</span><span class="n">Taxon</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">taxon_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">taxon_rank</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">taxon_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">authority</span> <span class="o">=</span> <span class="n">authority</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">mssg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_taxon</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">mssg</span>
+
+    <span class="k">def</span> <span class="nf">print_taxon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">tx</span> <span class="o">=</span> <span class="s2">&quot;&lt;Taxon&gt;</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="n">txt</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;name: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> 
+        <span class="s1">&#39;rank: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;id: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;authority: &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">authority</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+      <span class="p">]</span>
+      <span class="n">mssg</span> <span class="o">=</span> <span class="n">tx</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">mssg</span>
+
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+
+<span class="c1"># def taxon(name, rank = None, id = None, authority = None):</span>
+<span class="c1">#     &#39;&#39;&#39;</span>
+<span class="c1">#     Make a taxon</span>
+
+<span class="c1">#     :param name: [String] A taxonomic name</span>
+<span class="c1">#     :param rank: [String] A rank name</span>
+<span class="c1">#     :param id: [String] A taxonomic identifier</span>
+<span class="c1">#     :param authority: [String] A taxonomic authority</span>
+
+<span class="c1">#     :return: A dict</span>
+
+<span class="c1">#     Usage::</span>
+
+<span class="c1">#         from pytaxa import constructors as cs</span>
+<span class="c1">#         name = cs.taxon_name(&quot;Poa&quot;)</span>
+<span class="c1">#         rank = cs.taxon_rank(&quot;genus&quot;, &quot;ncbi&quot;)</span>
+<span class="c1">#         db = cs.taxon_database(&quot;ncbi&quot;, </span>
+<span class="c1">#             &quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;,</span>
+<span class="c1">#             &quot;NCBI Taxonomy Database&quot;, </span>
+<span class="c1">#             &quot;*&quot;)</span>
+<span class="c1">#         id = cs.taxon_id(12345, db)</span>
+<span class="c1">#         cs.taxon(name, rank, id, &quot;L.&quot;)</span>
+<span class="c1">#     &#39;&#39;&#39;</span>
+<span class="c1">#     return {&quot;name&quot;: name, &quot;rank&quot;: rank, &quot;id&quot;: id, &quot;authority&quot;: authority}</span>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Scott Chamberlain.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

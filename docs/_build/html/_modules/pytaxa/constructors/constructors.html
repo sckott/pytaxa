@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytaxa.constructors.constructors &mdash; pytaxa 0.0.1.1 documentation</title>
+  <title>pytaxa.constructors.constructors &mdash; pytaxa 0.0.1.2 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.1.1
+                0.0.1.2
               </div>
             
           
@@ -97,6 +97,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/intro.html">pytaxa modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/constructors.html">constructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/examples.html">examples module</a></li>
 </ul>
 <p class="caption"><span class="caption-text">All the rest</span></p>
 <ul>
@@ -169,11 +171,11 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pytaxa.constructors.constructors</h1><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">taxon_database</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">id_regex</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span></span><span class="k">def</span> <span class="nf">taxon_database</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">id_regex</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Make a taxon database</span>
 
-<span class="sd">    :param name: [String] A database name</span>
+<span class="sd">    :param database: [String] A database name</span>
 <span class="sd">    :param url: [String] The database URL</span>
 <span class="sd">    :param description: [String] A description</span>
 <span class="sd">    :param id_regex: [String] id regex</span>
@@ -188,7 +190,7 @@
 <span class="sd">            &quot;NCBI Taxonomy Database&quot;, </span>
 <span class="sd">            &quot;*&quot;)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> 
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="n">database</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> 
         <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&quot;id_regex&quot;</span><span class="p">:</span> <span class="n">id_regex</span><span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">taxon_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -205,6 +207,7 @@
 <span class="sd">        from pytaxa import constructors as cs</span>
 <span class="sd">        cs.taxon_name(&quot;Poa&quot;)</span>
 <span class="sd">        cs.taxon_name(&quot;Poa&quot;, &quot;ncbi&quot;)</span>
+<span class="sd">        cs.taxon_name(None)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="n">database</span><span class="p">}</span>
 
@@ -239,6 +242,11 @@
 <span class="sd">        from pytaxa import constructors as cs</span>
 <span class="sd">        cs.taxon_id(12345)</span>
 <span class="sd">        cs.taxon_id(12345, &quot;ncbi&quot;)</span>
+<span class="sd">        db = cs.taxon_database(&quot;ncbi&quot;, </span>
+<span class="sd">            &quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;,</span>
+<span class="sd">            &quot;NCBI Taxonomy Database&quot;, </span>
+<span class="sd">            &quot;*&quot;)</span>
+<span class="sd">        cs.taxon_id(12345, db)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="n">database</span><span class="p">}</span>
 </pre></div>
@@ -277,7 +285,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.1.1',
+            VERSION:'0.0.1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

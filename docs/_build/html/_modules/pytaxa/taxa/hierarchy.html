@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pytaxa.taxa.hierarchy &mdash; pytaxa 0.0.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pytaxa
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/install.html">Installation guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/intro.html">pytaxa modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/constructors.html">constructors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/taxa.html">taxa module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/examples.html">examples module</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All the rest</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog_link.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Contributor Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pytaxa</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pytaxa.taxa.hierarchy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pytaxa.taxa.hierarchy</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..ranks_ref</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.taxon</span> <span class="k">import</span> <span class="n">Taxon</span>
+<span class="kn">from</span> <span class="nn">..constructors</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Hierarchy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hierarchy class</span>
+
+<span class="sd">    Stores one or more `taxon` objects. Prints first 10 taxa </span>
+<span class="sd">    for brevity sake.</span>
+
+<span class="sd">    Usage:::</span>
+<span class="sd">        </span>
+<span class="sd">        from pytaxa import constructors as cs</span>
+<span class="sd">        from pytaxa import Taxon</span>
+
+<span class="sd">        # database to use for many taxon&#39;s</span>
+<span class="sd">        db = cs.taxon_database(&quot;ncbi&quot;, </span>
+<span class="sd">            &quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;,</span>
+<span class="sd">            &quot;NCBI Taxonomy Database&quot;, </span>
+<span class="sd">            &quot;*&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">        # make some taxon&#39;s</span>
+<span class="sd">        tx1 = Taxon(cs.taxon_name(&quot;Poaceae&quot;), </span>
+<span class="sd">          cs.taxon_rank(&quot;family&quot;, &quot;ncbi&quot;), cs.taxon_id(4479, db))</span>
+<span class="sd">        tx2 = Taxon(cs.taxon_name(&quot;Poa&quot;), </span>
+<span class="sd">          cs.taxon_rank(&quot;genus&quot;, &quot;ncbi&quot;), cs.taxon_id(12345, db))</span>
+<span class="sd">        tx3 = Taxon(cs.taxon_name(&quot;Poa annua&quot;), </span>
+<span class="sd">          cs.taxon_rank(&quot;species&quot;, &quot;ncbi&quot;), cs.taxon_id(93036, db))</span>
+<span class="sd">        </span>
+<span class="sd">        # single taxon</span>
+<span class="sd">        from pytaxa import Hierarchy</span>
+<span class="sd">        Hierarchy(tx1)</span>
+
+<span class="sd">        # many taxon&#39;s</span>
+<span class="sd">        z = Hierarchy(tx3, tx1, tx2)</span>
+<span class="sd">        z</span>
+<span class="sd">        z.taxa</span>
+<span class="sd">        z.ranklist</span>
+
+<span class="sd">        # various accessors</span>
+<span class="sd">        ## length - i.e., number of taxa</span>
+<span class="sd">        z.xlen</span>
+<span class="sd">        len(z)</span>
+
+<span class="sd">        # empty Hierarchies</span>
+<span class="sd">        Hierarchy(Taxon({}))</span>
+
+<span class="sd">        # pop, pick, span</span>
+<span class="sd">        ## example Hierarchy objects</span>
+<span class="sd">        from pytaxa import examples</span>
+<span class="sd">        examples.eg_hierarchy(&quot;poa&quot;)</span>
+<span class="sd">        examples.eg_hierarchy(&quot;puma&quot;)</span>
+<span class="sd">        examples.eg_hierarchy(&quot;salmo&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">        ## pop</span>
+<span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
+<span class="sd">        ex.pop(ranks = &quot;family&quot;)</span>
+<span class="sd">        ex.pop(names = &quot;Salmo&quot;)</span>
+<span class="sd">        ex.pop(ids = 331030)</span>
+
+<span class="sd">        ## pick</span>
+<span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
+<span class="sd">        ex</span>
+<span class="sd">        ex.pick(ranks = &quot;family&quot;)</span>
+<span class="sd">        ex.pick(names = [&quot;Salmo&quot;, &quot;Chordata&quot;, &quot;Teleostei&quot;])</span>
+<span class="sd">        ex.pick(ids = 331030)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">Taxon</span><span class="p">):</span>
+      <span class="nb">super</span><span class="p">(</span><span class="n">Hierarchy</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">ranklist</span> <span class="o">=</span> <span class="kc">None</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">all_have_ranks</span> <span class="o">=</span> <span class="n">no_nones</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+      <span class="k">if</span> <span class="n">all_have_ranks</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sort_hierarchy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">hier</span> <span class="o">=</span> <span class="s2">&quot;&lt;Hierarchy&gt;</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;Empty hierarchy</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span> 
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;Empty hierarchy</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">print_taxon</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+        <span class="n">no_taxa</span> <span class="o">=</span> <span class="s2">&quot;no. taxon&#39;s: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">hier</span> <span class="o">+</span> <span class="n">txt</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">print_taxon</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span> 
+        <span class="k">return</span> <span class="s2">&quot;empty&quot;</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39; / &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+          <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> 
+          <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+          <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">__sort_hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+      <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__poss_ranks</span><span class="p">():</span>
+          <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="s2">&quot; not in the acceptable set of rank names&quot;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">ranklist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">flatten</span><span class="p">([</span> <span class="n">which_ranks</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ranks</span> <span class="p">])))</span>
+      <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">argsort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ranklist</span><span class="p">)]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">__poss_ranks</span><span class="p">():</span>
+      <span class="n">rks</span> <span class="o">=</span> <span class="n">ranks_ref</span><span class="p">()</span>
+      <span class="n">allrks</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rks</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+      <span class="n">tmp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">allrks</span><span class="p">)))</span>
+      <span class="n">tmp</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">tmp</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">__all_empty</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no taxa found&quot;</span><span class="p">)</span>
+      
+      <span class="n">alldat</span> <span class="o">=</span> <span class="p">[</span><span class="n">ranks</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span><span class="p">]</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alldat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;one of &#39;ranks&#39;, &#39;names&#39;, or &#39;ids&#39; must be used&quot;</span><span class="p">)</span>
+      
+      <span class="n">taxa_rks</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">]</span>
+      <span class="n">taxa_nms</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">]</span>
+      <span class="n">taxa_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">]</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="k">if</span> 
+        <span class="n">w</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">ranks</span> <span class="ow">and</span> 
+        <span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">names</span> <span class="ow">and</span> 
+        <span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">ids</span><span class="p">]</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sort_hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span>
+      <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no taxa found&quot;</span><span class="p">)</span>
+      
+      <span class="n">alldat</span> <span class="o">=</span> <span class="p">[</span><span class="n">ranks</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span><span class="p">]</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alldat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;one of &#39;ranks&#39;, &#39;names&#39;, or &#39;ids&#39; must be used&quot;</span><span class="p">)</span>
+      
+      <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__inbool</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">ranks</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__inbool</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">names</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__inbool</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">),</span> <span class="n">int2str</span><span class="p">(</span><span class="n">ids</span><span class="p">))</span>
+      <span class="p">]</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sort_hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span>
+      <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">__inbool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+      <span class="c1"># flatten list, ints converted to str</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+      <span class="k">return</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">any</span><span class="p">([</span><span class="n">z</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">y</span><span class="p">])</span>
+      
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Scott Chamberlain.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.0.1.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

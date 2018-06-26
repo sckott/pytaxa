@@ -11,7 +11,7 @@ with open('pytaxa/__init__.py', 'r') as fd:
 if not version:
     raise RuntimeError('Cannot find version information')
 
-with codecs.open('README.rst', 'r', 'utf-8') as f:
+with codecs.open('README.md', 'r', 'utf-8') as f:
     readme = f.read()
 
 with codecs.open('Changelog.rst', 'r', 'utf-8') as f:
@@ -25,7 +25,7 @@ setup(
 	description      = 'Taxonomic Classes',
 	long_description = long_description,
   author           = 'Scott Chamberlain',
-  author_email     = 'myrmecocystus@gmail.com',
+  author_email     = 'sckott@protonmail.com',
   url              = 'https://github.com/sckott/pytaxa',
   license          = 'MIT',
   packages         = find_packages(exclude=['test-*']),

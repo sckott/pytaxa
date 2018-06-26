@@ -31,6 +31,8 @@ Modules
 
    modules/intro
    modules/constructors
+   modules/taxa
+   modules/examples
 
 :doc:`modules/intro`
     Introduction to pytaxa modules
@@ -38,6 +40,11 @@ Modules
 :doc:`modules/constructors`
     The constructors module
 
+:doc:`modules/taxa`
+    The taxa module
+
+:doc:`modules/examples`
+    The examples module
 
 All the rest
 ============
