@@ -9,6 +9,8 @@ pytaxa
 
 Minimum Python version: 3.5
 
+Check out sister R package: <https://github.com/ropensci/taxa>
+
 
 ## Installation
 
@@ -22,12 +24,6 @@ sudo pip install git+git://github.com/sckott/pytaxa.git#egg=pytaxa
 git clone git@github.com:sckott/pytaxa.git
 cd pytaxa
 make install
-```
-
-## Usage
-
-```python
-xxxxx
 ```
 
 ## Meta
