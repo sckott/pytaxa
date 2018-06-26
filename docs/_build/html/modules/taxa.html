@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>taxa module &mdash; pytaxa 0.0.1.2 documentation</title>
+  <title>taxa module &mdash; pytaxa 0.0.1.4 documentation</title>
   
 
   
@@ -35,7 +35,9 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../index.html"/> 
+    <link rel="top" title="pytaxa 0.0.1.4 documentation" href="../index.html"/>
+        <link rel="next" title="examples module" href="examples.html"/>
+        <link rel="prev" title="constructors module" href="constructors.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -64,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1.2
+                0.0.1.4
               </div>
             
           
@@ -93,9 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro/install.html">Installation guide</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">pytaxa modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constructors.html">constructors module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">taxa module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytaxa">taxa API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">examples module</a></li>
 </ul>
 <p class="caption"><span class="caption-text">All the rest</span></p>
 <ul>
@@ -174,6 +181,7 @@
 <li><cite>Taxon</cite></li>
 <li><cite>Taxa</cite></li>
 <li><cite>Hierarchy</cite></li>
+<li><cite>Hierarchies</cite></li>
 </ul>
 <p>Example usage:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a taxon</span>
@@ -251,7 +259,7 @@ for brevity sake.</p>
 <span class="c1"># handles empty taxon objects</span>
 <span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">tx</span><span class="p">)</span>
 
-<span class="c1"># various accessors</span>
+<span class="c1"># various accessors: len</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">tx</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">bb</span><span class="p">)</span>
 </pre></div>
@@ -264,6 +272,10 @@ for brevity sake.</p>
 <dd><p>Hierarchy class</p>
 <p>Stores one or more <cite>taxon</cite> objects. Prints first 10 taxa 
 for brevity sake.</p>
+<p>We make a deep copy of the input to <cite>Hierarchy</cite> so that <cite>pop</cite>/<cite>pick</cite>/etc
+operations don’t change the inputs to <cite>Hierarchy</cite>. The deep copy is 
+made at initialization, so if you don’t re-initialize changes made to the 
+hierarchy by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
 <p>Usage::</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
 <span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Taxon</span>
@@ -310,15 +322,53 @@ for brevity sake.</p>
 <span class="c1">## pop</span>
 <span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
 <span class="n">ex</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;family&quot;</span><span class="p">)</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
 <span class="n">ex</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">names</span> <span class="o">=</span> <span class="s2">&quot;Salmo&quot;</span><span class="p">)</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
 <span class="n">ex</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ids</span> <span class="o">=</span> <span class="mi">331030</span><span class="p">)</span>
 
 <span class="c1">## pick</span>
 <span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
 <span class="n">ex</span>
 <span class="n">ex</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;family&quot;</span><span class="p">)</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
 <span class="n">ex</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salmo&quot;</span><span class="p">,</span> <span class="s2">&quot;Chordata&quot;</span><span class="p">,</span> <span class="s2">&quot;Teleostei&quot;</span><span class="p">])</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
 <span class="n">ex</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ids</span> <span class="o">=</span> <span class="mi">331030</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytaxa.taxa.Hierarchies">
+<code class="descclassname">taxa.</code><code class="descname">Hierarchies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytaxa.taxa.Hierarchies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hierarchies class</p>
+<p>Stores one or more <cite>Hierarchy</cite> objects. Prints first 10 Hierarchy’s 
+for brevity.</p>
+<p>We make a deep copy of the input to <cite>Hierarchies</cite> so that <cite>pop</cite>/<cite>pick</cite>/etc
+operations don’t change the inputs to <cite>Hierarchies</cite>. The deep copy is 
+made at initialization, so if you don’t re-initialize changes made to the 
+hierarchies by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
+<p>Usage::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## example Hierarchy objects</span>
+<span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">examples</span>
+<span class="n">ex1</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;poa&quot;</span><span class="p">)</span>
+<span class="n">ex2</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;puma&quot;</span><span class="p">)</span>
+<span class="n">ex3</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
+
+<span class="c1"># make Hierarchies object</span>
+<span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Hierarchies</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Hierarchies</span><span class="p">(</span><span class="n">ex1</span><span class="p">,</span> <span class="n">ex2</span><span class="p">,</span> <span class="n">ex3</span><span class="p">)</span>
+<span class="n">x</span>
+
+<span class="c1"># use pop/pick/span across all Hierarchy&#39;s</span>
+<span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Hierarchies</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Hierarchies</span><span class="p">(</span><span class="n">ex1</span><span class="p">,</span> <span class="n">ex2</span><span class="p">,</span> <span class="n">ex3</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="n">x</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;family&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;genus&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;genus&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">])</span>
+<span class="n">x</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -333,6 +383,15 @@ for brevity sake.</p>
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="examples module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="constructors.html" class="btn btn-neutral" title="constructors module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -361,7 +420,7 @@ for brevity sake.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.1.2',
+            VERSION:'0.0.1.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

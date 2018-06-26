@@ -9,6 +9,7 @@ taxa module API:
 * `Taxon`
 * `Taxa`
 * `Hierarchy`
+* `Hierarchies`
 
 Example usage:
 
@@ -39,3 +40,4 @@ taxa API
 .. automethod:: taxa.Taxon
 .. automethod:: taxa.Taxa
 .. automethod:: taxa.Hierarchy
+.. automethod:: taxa.Hierarchies

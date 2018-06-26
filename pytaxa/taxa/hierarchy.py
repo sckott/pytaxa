@@ -1,4 +1,5 @@
 from ..utils import *
+import copy
 from ..ranks_ref import *
 from .taxon import Taxon
 from ..constructors import *
@@ -9,6 +10,11 @@ class Hierarchy(object):
 
     Stores one or more `taxon` objects. Prints first 10 taxa 
     for brevity sake.
+
+    We make a deep copy of the input to `Hierarchy` so that `pop`/`pick`/etc
+    operations don't change the inputs to `Hierarchy`. The deep copy is 
+    made at initialization, so if you don't re-initialize changes made to the 
+    hierarchy by `pop`/`pick`/etc persist.
 
     Usage:::
         
@@ -57,19 +63,23 @@ class Hierarchy(object):
         ## pop
         ex = examples.eg_hierarchy("salmo")
         ex.pop(ranks = "family")
+        ex = examples.eg_hierarchy("salmo")
         ex.pop(names = "Salmo")
+        ex = examples.eg_hierarchy("salmo")
         ex.pop(ids = 331030)
 
         ## pick
         ex = examples.eg_hierarchy("salmo")
         ex
         ex.pick(ranks = "family")
+        ex = examples.eg_hierarchy("salmo")
         ex.pick(names = ["Salmo", "Chordata", "Teleostei"])
+        ex = examples.eg_hierarchy("salmo")
         ex.pick(ids = 331030)
     """
     def __init__(self, *x: Taxon):
       super(Hierarchy, self).__init__()
-      self.x = x
+      self.x = copy.deepcopy(x)
       self.ranklist = None
       self.xlen = len(x)
       all_have_ranks = no_nones([z.rank.get("name") for z in x])
@@ -177,6 +187,11 @@ class Hierarchies(object):
     Stores one or more `Hierarchy` objects. Prints first 10 Hierarchy's 
     for brevity.
 
+    We make a deep copy of the input to `Hierarchies` so that `pop`/`pick`/etc
+    operations don't change the inputs to `Hierarchies`. The deep copy is 
+    made at initialization, so if you don't re-initialize changes made to the 
+    hierarchies by `pop`/`pick`/etc persist.
+
     Usage:::
         
         ## example Hierarchy objects
@@ -189,10 +204,19 @@ class Hierarchies(object):
         from pytaxa import Hierarchies
         x = Hierarchies(ex1, ex2, ex3)
         x
+
+        # use pop/pick/span across all Hierarchy's
+        from pytaxa import Hierarchies
+        x = Hierarchies(ex1, ex2, ex3)
+        x
+        x.pop(ranks = "family")
+        x.pop(ranks = "genus")
+        x.pick(ranks = ["genus", "species"])
+        x.pick(ranks = ["family", "species"])
     """
     def __init__(self, *x: Hierarchy):
       super(Hierarchies, self).__init__()
-      self.x = x
+      self.x = copy.deepcopy(x)
 
     def __repr__(self):
       hier = "<Hierarchies>\n  "
@@ -212,4 +236,12 @@ class Hierarchies(object):
     @staticmethod
     def print_names(x):
       return ' / '.join([str(w.name.get('name')) or "" for w in x.taxa])
+
+    def pop(self, ranks = None, names = None, ids = None):
+      self.x = [w.pop(ranks, names, ids) for w in self.x]
+      return self
+
+    def pick(self, ranks = None, names = None, ids = None):
+      self.x = [w.pick(ranks, names, ids) for w in self.x]
+      return self
 

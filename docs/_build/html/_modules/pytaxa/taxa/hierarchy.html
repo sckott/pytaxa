@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytaxa.taxa.hierarchy &mdash; pytaxa 0.0.1.2 documentation</title>
+  <title>pytaxa.taxa.hierarchy &mdash; pytaxa 0.0.1.4 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="pytaxa 0.0.1.4 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.1.2
+                0.0.1.4
               </div>
             
           
@@ -172,6 +172,7 @@
             
   <h1>Source code for pytaxa.taxa.hierarchy</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">..ranks_ref</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">.taxon</span> <span class="k">import</span> <span class="n">Taxon</span>
 <span class="kn">from</span> <span class="nn">..constructors</span> <span class="k">import</span> <span class="o">*</span>
@@ -182,6 +183,11 @@
 
 <span class="sd">    Stores one or more `taxon` objects. Prints first 10 taxa </span>
 <span class="sd">    for brevity sake.</span>
+
+<span class="sd">    We make a deep copy of the input to `Hierarchy` so that `pop`/`pick`/etc</span>
+<span class="sd">    operations don&#39;t change the inputs to `Hierarchy`. The deep copy is </span>
+<span class="sd">    made at initialization, so if you don&#39;t re-initialize changes made to the </span>
+<span class="sd">    hierarchy by `pop`/`pick`/etc persist.</span>
 
 <span class="sd">    Usage:::</span>
 <span class="sd">        </span>
@@ -230,19 +236,23 @@
 <span class="sd">        ## pop</span>
 <span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
 <span class="sd">        ex.pop(ranks = &quot;family&quot;)</span>
+<span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
 <span class="sd">        ex.pop(names = &quot;Salmo&quot;)</span>
+<span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
 <span class="sd">        ex.pop(ids = 331030)</span>
 
 <span class="sd">        ## pick</span>
 <span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
 <span class="sd">        ex</span>
 <span class="sd">        ex.pick(ranks = &quot;family&quot;)</span>
+<span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
 <span class="sd">        ex.pick(names = [&quot;Salmo&quot;, &quot;Chordata&quot;, &quot;Teleostei&quot;])</span>
+<span class="sd">        ex = examples.eg_hierarchy(&quot;salmo&quot;)</span>
 <span class="sd">        ex.pick(ids = 331030)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">Taxon</span><span class="p">):</span>
       <span class="nb">super</span><span class="p">(</span><span class="n">Hierarchy</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">ranklist</span> <span class="o">=</span> <span class="kc">None</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
       <span class="n">all_have_ranks</span> <span class="o">=</span> <span class="n">no_nones</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
@@ -295,12 +305,11 @@
       <span class="n">tmp</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
       <span class="k">return</span> <span class="n">tmp</span>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">__all_empty</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-      <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">all_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_empty</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no taxa found&quot;</span><span class="p">)</span>
       
       <span class="n">alldat</span> <span class="o">=</span> <span class="p">[</span><span class="n">ranks</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span><span class="p">]</span>
@@ -321,7 +330,7 @@
       <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__all_empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_empty</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no taxa found&quot;</span><span class="p">)</span>
       
       <span class="n">alldat</span> <span class="o">=</span> <span class="p">[</span><span class="n">ranks</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span><span class="p">]</span>
@@ -343,6 +352,72 @@
       <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
       <span class="k">return</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">any</span><span class="p">([</span><span class="n">z</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">y</span><span class="p">])</span>
       
+
+<span class="k">class</span> <span class="nc">Hierarchies</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hierarchies class</span>
+
+<span class="sd">    Stores one or more `Hierarchy` objects. Prints first 10 Hierarchy&#39;s </span>
+<span class="sd">    for brevity.</span>
+
+<span class="sd">    We make a deep copy of the input to `Hierarchies` so that `pop`/`pick`/etc</span>
+<span class="sd">    operations don&#39;t change the inputs to `Hierarchies`. The deep copy is </span>
+<span class="sd">    made at initialization, so if you don&#39;t re-initialize changes made to the </span>
+<span class="sd">    hierarchies by `pop`/`pick`/etc persist.</span>
+
+<span class="sd">    Usage:::</span>
+<span class="sd">        </span>
+<span class="sd">        ## example Hierarchy objects</span>
+<span class="sd">        from pytaxa import examples</span>
+<span class="sd">        ex1 = examples.eg_hierarchy(&quot;poa&quot;)</span>
+<span class="sd">        ex2 = examples.eg_hierarchy(&quot;puma&quot;)</span>
+<span class="sd">        ex3 = examples.eg_hierarchy(&quot;salmo&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">        # make Hierarchies object</span>
+<span class="sd">        from pytaxa import Hierarchies</span>
+<span class="sd">        x = Hierarchies(ex1, ex2, ex3)</span>
+<span class="sd">        x</span>
+
+<span class="sd">        # use pop/pick/span across all Hierarchy&#39;s</span>
+<span class="sd">        from pytaxa import Hierarchies</span>
+<span class="sd">        x = Hierarchies(ex1, ex2, ex3)</span>
+<span class="sd">        x</span>
+<span class="sd">        x.pop(ranks = &quot;family&quot;)</span>
+<span class="sd">        x.pop(ranks = &quot;genus&quot;)</span>
+<span class="sd">        x.pick(ranks = [&quot;genus&quot;, &quot;species&quot;])</span>
+<span class="sd">        x.pick(ranks = [&quot;family&quot;, &quot;species&quot;])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">Hierarchy</span><span class="p">):</span>
+      <span class="nb">super</span><span class="p">(</span><span class="n">Hierarchies</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">hier</span> <span class="o">=</span> <span class="s2">&quot;&lt;Hierarchies&gt;</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;no. hierarchies: 0</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">all_empty</span><span class="p">():</span> 
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;no. hierarchies: 0</span><span class="se">\n</span><span class="s2">  &quot;</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">print_names</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+        <span class="n">no_taxa</span> <span class="o">=</span> <span class="s2">&quot;no. hierarchies: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="n">no_taxa</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">hier</span> <span class="o">+</span> <span class="n">txt</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">print_names</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="k">return</span> <span class="s1">&#39; / &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">taxa</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+      <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ranks</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ranks</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+      <span class="k">return</span> <span class="bp">self</span>
+
 </pre></div>
 
            </div>
@@ -379,7 +454,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.1.2',
+            VERSION:'0.0.1.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
