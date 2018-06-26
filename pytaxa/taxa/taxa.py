@@ -28,10 +28,9 @@ class Taxa(object):
         # handles empty taxon objects
         Taxa(tx, cs.taxon(None), tx)
 
-        # various accessors
+        # various accessors: len
         bb = Taxa(tx, tx)
         len(bb)
-        
     """
     def __init__(self, *x):
       super(Taxa, self).__init__()
