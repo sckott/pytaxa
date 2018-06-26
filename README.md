@@ -7,7 +7,7 @@ pytaxa
 [![coverage](https://codecov.io/gh/sckott/pytaxa/branch/master/graph/badge.svg)](https://codecov.io/gh/sckott/pytaxa)
 
 
-more coming ...
+Minimum Python version: 3.5
 
 
 ## Installation
