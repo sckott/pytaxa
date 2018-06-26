@@ -2,6 +2,16 @@ from ..constructors import constructors as cs
 from ..taxa import Taxon,Hierarchy
 
 def eg_hierarchy(which = "poa"):
+  """
+    Hierarchy example objects
+
+    Usage:::
+        
+        from pytaxa import examples
+        examples.eg_hierarchy("poa")
+        examples.eg_hierarchy("puma")
+        examples.eg_hierarchy("salmo")
+  """
   if which not in ['poa', 'puma', 'salmo']:
     raise ValueError("'which' must be one of 'poa', 'puma', or 'salmo'")
 

@@ -1,6 +1,7 @@
 """Tests for taxon_name"""
 import os
-from nose.tools import *
+# from nose.tools import *
+import pytest
 from pytaxa import constructors as c
 
 def test_taxon_name():
@@ -12,7 +13,7 @@ def test_taxon_name():
     assert None == res['database']
 
 def test_taxon_name_database_param():
-    "taxon_name - param: name"
+    "taxon_name - params: name & database"
     res = c.taxon_name('Poa', 'ncbi')
     assert dict == res.__class__
     assert 2 == len(res)

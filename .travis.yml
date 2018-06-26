@@ -11,7 +11,7 @@ install:
   - pip install codecov
 
 script:
-  - nosetests --with-coverage -v --cover-package=pytaxa
+  - python3 -m pytest -v --cov=pytaxa test/
 
 after_success:
   - codecov

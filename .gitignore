@@ -1,5 +1,3 @@
-.coverage
-
 # Compiled python modules.
 *.pyc
 
@@ -18,6 +16,7 @@
 
 .tox
 .coverage
+.coveragerc
 
 # test DwcA
 *.zip
@@ -31,3 +30,6 @@
 
 # scratch files
 scratch.py
+
+# tests
+.pytest_cache/

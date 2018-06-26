@@ -1,6 +1,7 @@
 """Tests for taxon_database"""
 import os
-from nose.tools import *
+# from nose.tools import *
+import pytest
 from pytaxa import constructors as c
 
 def test_taxon_database():

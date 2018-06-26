@@ -9,10 +9,7 @@ install:
 	python3 setup.py install
 
 test:
-	nosetests -v --with-coverage --cover-package=pytaxa
-
-test3:
-	python3 -m "nose" -v --with-coverage --cover-package=pytaxa
+	python3 -m pytest -v --cov=pytaxa test/
 
 docs:
 	cd docs;\

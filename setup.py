@@ -31,6 +31,7 @@ setup(
   packages         = find_packages(exclude=['test-*']),
   install_requires = ['requests>=2.19.0'],
   python_requires  = '>=3.5',
+  tests_require    = ["pytest"],
   classifiers      = (
     'Development Status :: 4 - Beta',
     'Intended Audience :: Science/Research',
