@@ -122,12 +122,11 @@ class Hierarchy(object):
       tmp.sort()
       return tmp
 
-    @staticmethod
-    def __all_empty(x):
-      return all([z.is_empty() for z in x])
+    def all_empty(self):
+      return all([z.is_empty() for z in self.taxa])
 
     def pop(self, ranks = None, names = None, ids = None):
-      if self.__all_empty(self.taxa):
+      if self.all_empty():
         raise ValueError("no taxa found")
       
       alldat = [ranks, names, ids]
@@ -148,7 +147,7 @@ class Hierarchy(object):
       return self
 
     def pick(self, ranks = None, names = None, ids = None):
-      if self.__all_empty(self.taxa):
+      if self.all_empty():
         raise ValueError("no taxa found")
       
       alldat = [ranks, names, ids]
@@ -170,3 +169,47 @@ class Hierarchy(object):
       x = [x]
       return False if x is None or y is None else any([z for z in x if z in y])
       
+
+class Hierarchies(object):
+    """
+    Hierarchies class
+
+    Stores one or more `Hierarchy` objects. Prints first 10 Hierarchy's 
+    for brevity.
+
+    Usage:::
+        
+        ## example Hierarchy objects
+        from pytaxa import examples
+        ex1 = examples.eg_hierarchy("poa")
+        ex2 = examples.eg_hierarchy("puma")
+        ex3 = examples.eg_hierarchy("salmo")
+        
+        # make Hierarchies object
+        from pytaxa import Hierarchies
+        x = Hierarchies(ex1, ex2, ex3)
+        x
+    """
+    def __init__(self, *x: Hierarchy):
+      super(Hierarchies, self).__init__()
+      self.x = x
+
+    def __repr__(self):
+      hier = "<Hierarchies>\n  "
+      if len(self.x) == 0:
+        txt = "no. hierarchies: 0\n  "
+      elif self.x[0].all_empty(): 
+        txt = "no. hierarchies: 0\n  "
+      else:
+        z = [self.print_names(z) for z in self.x[:10]]
+        no_taxa = "no. hierarchies: %d\n  " % len(self.x)
+        txt = no_taxa + '\n  '.join(z)
+      return hier + txt
+
+    def __len__(self):
+      return len(self.x)
+
+    @staticmethod
+    def print_names(x):
+      return ' / '.join([str(w.name.get('name')) or "" for w in x.taxa])
+

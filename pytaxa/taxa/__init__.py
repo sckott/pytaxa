@@ -2,4 +2,4 @@
 
 from .taxa import Taxa
 from .taxon import Taxon
-from .hierarchy import Hierarchy
+from .hierarchy import Hierarchy,Hierarchies
