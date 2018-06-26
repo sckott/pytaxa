@@ -175,6 +175,16 @@
 <span class="kn">from</span> <span class="nn">..taxa</span> <span class="k">import</span> <span class="n">Taxon</span><span class="p">,</span><span class="n">Hierarchy</span>
 
 <span class="k">def</span> <span class="nf">eg_hierarchy</span><span class="p">(</span><span class="n">which</span> <span class="o">=</span> <span class="s2">&quot;poa&quot;</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hierarchy example objects</span>
+
+<span class="sd">    Usage:::</span>
+<span class="sd">        </span>
+<span class="sd">        from pytaxa import examples</span>
+<span class="sd">        examples.eg_hierarchy(&quot;poa&quot;)</span>
+<span class="sd">        examples.eg_hierarchy(&quot;puma&quot;)</span>
+<span class="sd">        examples.eg_hierarchy(&quot;salmo&quot;)</span>
+<span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">if</span> <span class="n">which</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;poa&#39;</span><span class="p">,</span> <span class="s1">&#39;puma&#39;</span><span class="p">,</span> <span class="s1">&#39;salmo&#39;</span><span class="p">]:</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;which&#39; must be one of &#39;poa&#39;, &#39;puma&#39;, or &#39;salmo&#39;&quot;</span><span class="p">)</span>
 
