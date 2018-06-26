@@ -2,7 +2,6 @@ pytaxa
 ======
 
 [![pypi](https://img.shields.io/pypi/v/pytaxa.svg)](https://pypi.python.org/pypi/pytaxa)
-
 [![travis](https://travis-ci.org/sckott/pytaxa.svg?branch=master)](https://travis-ci.org/sckott/pytaxa)
 [![coverage](https://codecov.io/gh/sckott/pytaxa/branch/master/graph/badge.svg)](https://codecov.io/gh/sckott/pytaxa)
 

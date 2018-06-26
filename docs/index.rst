@@ -2,7 +2,7 @@
 pytaxa |version| documentation
 ==============================
 
-|pypi| |docs| |travis| |coverage|
+|pypi| |travis| |coverage|
 
 more coming ...
 
@@ -84,9 +84,6 @@ Indices and tables
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pytaxa.svg
    :target: https://pypi.python.org/pypi/pytaxa
-
-.. |docs| image:: https://readthedocs.org/projects/pytaxa/badge/?version=latest
-   :target: http://pytaxa.rtfd.org/
 
 .. |travis| image:: https://travis-ci.org/sckott/pytaxa.svg
    :target: https://travis-ci.org/sckott/pytaxa
