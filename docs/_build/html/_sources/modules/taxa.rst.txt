@@ -37,7 +37,19 @@ taxa API
 
 .. py:module:: pytaxa
 
-.. automethod:: taxa.Taxon
-.. automethod:: taxa.Taxa
-.. automethod:: taxa.Hierarchy
-.. automethod:: taxa.Hierarchies
+.. autoclass:: Taxon
+.. autoclass:: Taxa
+.. autoclass:: Hierarchy
+.. autoclass:: Hierarchies
+
+
+.. _hierarchy-methods:
+
+Hierarchy functions
+===================
+
+.. py:module:: pytaxa
+
+.. automethod:: Hierarchy.all_empty
+.. automethod:: Hierarchy.pop
+.. automethod:: Hierarchy.pick

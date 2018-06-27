@@ -16,7 +16,14 @@ class Hierarchy(object):
     made at initialization, so if you don't re-initialize changes made to the 
     hierarchy by `pop`/`pick`/etc persist.
 
-    Usage:::
+    :param taxa: Any number of objects of type `Taxon` resulting from a call to
+      :func:`~pytaxa.taxa.Taxon`
+
+    :return: object of class Hierarchy
+
+    see also :ref:`hierarchy-methods`
+
+    Usage::
         
         from pytaxa import constructors as cs
         from pytaxa import Taxon
@@ -77,16 +84,16 @@ class Hierarchy(object):
         ex = examples.eg_hierarchy("salmo")
         ex.pick(ids = 331030)
     """
-    def __init__(self, *x: Taxon):
+    def __init__(self, *taxa: Taxon):
       super(Hierarchy, self).__init__()
-      self.x = copy.deepcopy(x)
+      self.taxa = copy.deepcopy(taxa)
       self.ranklist = None
-      self.xlen = len(x)
-      all_have_ranks = no_nones([z.rank.get("name") for z in x])
+      self.xlen = len(taxa)
+      all_have_ranks = no_nones([z.rank.get("name") for z in taxa])
       if all_have_ranks:
-        self.taxa = self.__sort_hierarchy(x)
+        self.taxa = self.__sort_hierarchy(taxa)
       else:
-        self.taxa = x
+        self.taxa = taxa
 
     def __repr__(self):
       hier = "<Hierarchy>\n  "
@@ -133,9 +140,29 @@ class Hierarchy(object):
       return tmp
 
     def all_empty(self):
+      """
+      Check if all taxa are empty
+
+      :return: bool
+      """
       return all([z.is_empty() for z in self.taxa])
 
     def pop(self, ranks = None, names = None, ids = None):
+      """
+      Pop out certain taxa by ranks, names, or ids
+
+      :param ranks: rank names as `str`
+      :param names: taxonomic names as `str`
+      :param ids: taxonomic identifiers as `str` or `int`
+
+      :return: self, object of class Hierarchy
+
+      Usage::
+
+        from pytaxa import examples
+        ex = examples.eg_hierarchy("salmo")
+        ex.pop(ranks = "family")
+      """
       if self.all_empty():
         raise ValueError("no taxa found")
       
@@ -157,6 +184,21 @@ class Hierarchy(object):
       return self
 
     def pick(self, ranks = None, names = None, ids = None):
+      """
+      Pick certain taxa by ranks, names, or ids
+
+      :param ranks: rank names as `str`
+      :param names: taxonomic names as `str`
+      :param ids: taxonomic identifiers as `str` or `int`
+
+      :return: self, object of class Hierarchy
+
+      Usage::
+
+        from pytaxa import examples
+        ex = examples.eg_hierarchy("salmo")
+        ex.pick(names = ["Salmo", "Chordata", "Teleostei"])
+      """
       if self.all_empty():
         raise ValueError("no taxa found")
       
@@ -192,7 +234,12 @@ class Hierarchies(object):
     made at initialization, so if you don't re-initialize changes made to the 
     hierarchies by `pop`/`pick`/etc persist.
 
-    Usage:::
+    :param hir: Any number of objects of type `Hierarchy` resulting from a call to
+      :func:`~pytaxa.taxa.Hierarchy`
+
+    :return: object of class Hierarchy
+
+    Usage::
         
         ## example Hierarchy objects
         from pytaxa import examples
@@ -214,34 +261,34 @@ class Hierarchies(object):
         x.pick(ranks = ["genus", "species"])
         x.pick(ranks = ["family", "species"])
     """
-    def __init__(self, *x: Hierarchy):
+    def __init__(self, *hir: Hierarchy):
       super(Hierarchies, self).__init__()
-      self.x = copy.deepcopy(x)
+      self.hir = copy.deepcopy(hir)
 
     def __repr__(self):
       hier = "<Hierarchies>\n  "
-      if len(self.x) == 0:
+      if len(self.hir) == 0:
         txt = "no. hierarchies: 0\n  "
-      elif self.x[0].all_empty(): 
+      elif self.hir[0].all_empty(): 
         txt = "no. hierarchies: 0\n  "
       else:
-        z = [self.print_names(z) for z in self.x[:10]]
-        no_taxa = "no. hierarchies: %d\n  " % len(self.x)
+        z = [self.print_names(z) for z in self.hir[:10]]
+        no_taxa = "no. hierarchies: %d\n  " % len(self.hir)
         txt = no_taxa + '\n  '.join(z)
       return hier + txt
 
     def __len__(self):
-      return len(self.x)
+      return len(self.hir)
 
     @staticmethod
     def print_names(x):
-      return ' / '.join([str(w.name.get('name')) or "" for w in x.taxa])
+      return ' / '.join([str(w.name.get('name')) or "" for w in x.hir])
 
     def pop(self, ranks = None, names = None, ids = None):
-      self.x = [w.pop(ranks, names, ids) for w in self.x]
+      self.hir = [w.pop(ranks, names, ids) for w in self.hir]
       return self
 
     def pick(self, ranks = None, names = None, ids = None):
-      self.x = [w.pick(ranks, names, ids) for w in self.x]
+      self.hir = [w.pick(ranks, names, ids) for w in self.hir]
       return self
 

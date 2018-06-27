@@ -1,6 +1,6 @@
 Changelog
 =========
 
-0.0.1.1 (2018-03-16)
+0.0.6 (2018-06-26)
 --------------------
-* in development ...
+* First pypi release

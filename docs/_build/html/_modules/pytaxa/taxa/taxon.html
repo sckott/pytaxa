@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytaxa.taxa.taxon &mdash; pytaxa 0.0.1.4 documentation</title>
+  <title>pytaxa.taxa.taxon &mdash; pytaxa 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="pytaxa 0.0.6 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.1.4
+                0.0.6
               </div>
             
           
@@ -175,13 +175,21 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">..constructors</span> <span class="k">import</span> <span class="o">*</span>
 
-<span class="k">class</span> <span class="nc">Taxon</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Taxon"><a class="viewcode-back" href="../../../modules/taxa.html#pytaxa.Taxon">[docs]</a><span class="k">class</span> <span class="nc">Taxon</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Taxon class</span>
 
 <span class="sd">    Create a `taxon` object</span>
 
-<span class="sd">    Usage:::</span>
+<span class="sd">    :param name: A dict resulting from a call to :func:`~pytaxa.constructors.taxon_name`</span>
+<span class="sd">      with `name` and `database` keys, or a name as a `str`</span>
+<span class="sd">    :param rank: A dict resulting from a call to :func:`~pytaxa.constructors.taxon_rank`</span>
+<span class="sd">      with `name` and `database` keys, or a name as a `str`</span>
+<span class="sd">    :param id: A dict resulting from a call to :func:`~pytaxa.constructors.taxon_id`</span>
+<span class="sd">      with `id` and `database` keys, or an identifier as an `int`</span>
+<span class="sd">    :param authority: An authority name as a `str`</span>
+
+<span class="sd">    Usage::</span>
 <span class="sd">        </span>
 <span class="sd">        from pytaxa import constructors as cs</span>
 <span class="sd">        from pytaxa import Taxon</span>
@@ -231,33 +239,8 @@
       <span class="n">mssg</span> <span class="o">=</span> <span class="n">tx</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
       <span class="k">return</span> <span class="n">mssg</span>
 
-    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
       <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
-
-<span class="c1"># def taxon(name, rank = None, id = None, authority = None):</span>
-<span class="c1">#     &#39;&#39;&#39;</span>
-<span class="c1">#     Make a taxon</span>
-
-<span class="c1">#     :param name: [String] A taxonomic name</span>
-<span class="c1">#     :param rank: [String] A rank name</span>
-<span class="c1">#     :param id: [String] A taxonomic identifier</span>
-<span class="c1">#     :param authority: [String] A taxonomic authority</span>
-
-<span class="c1">#     :return: A dict</span>
-
-<span class="c1">#     Usage::</span>
-
-<span class="c1">#         from pytaxa import constructors as cs</span>
-<span class="c1">#         name = cs.taxon_name(&quot;Poa&quot;)</span>
-<span class="c1">#         rank = cs.taxon_rank(&quot;genus&quot;, &quot;ncbi&quot;)</span>
-<span class="c1">#         db = cs.taxon_database(&quot;ncbi&quot;, </span>
-<span class="c1">#             &quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;,</span>
-<span class="c1">#             &quot;NCBI Taxonomy Database&quot;, </span>
-<span class="c1">#             &quot;*&quot;)</span>
-<span class="c1">#         id = cs.taxon_id(12345, db)</span>
-<span class="c1">#         cs.taxon(name, rank, id, &quot;L.&quot;)</span>
-<span class="c1">#     &#39;&#39;&#39;</span>
-<span class="c1">#     return {&quot;name&quot;: name, &quot;rank&quot;: rank, &quot;id&quot;: id, &quot;authority&quot;: authority}</span>
 </pre></div>
 
            </div>
@@ -294,7 +277,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.1.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

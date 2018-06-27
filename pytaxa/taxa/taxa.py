@@ -1,4 +1,5 @@
 from ..utils import *
+from .taxon import Taxon
 
 class Taxa(object):
     """
@@ -7,7 +8,10 @@ class Taxa(object):
     Stores one or more `taxon` objects. Prints first 10 taxa 
     for brevity sake.
 
-    Usage:::
+    :param taxa: Any number of objects of type `Taxon` resulting from a call to
+      :func:`~pytaxa.taxa.Taxon`
+
+    Usage::
         
         # make a taxon
         from pytaxa import constructors as cs
@@ -18,28 +22,31 @@ class Taxa(object):
             "NCBI Taxonomy Database", 
             "*")
         id = cs.taxon_id(12345, db)
-        tx = cs.taxon(name, rank, id, "L.")
+        
+        from pytaxa import Taxon
+        tx = Taxon(name, rank, id, "L.")
         
         # combine many taxon's into taxa
         from pytaxa import Taxa
         Taxa(tx)
         bb = Taxa(tx, tx)
+        bb
 
         # handles empty taxon objects
-        Taxa(tx, cs.taxon(None), tx)
+        Taxa(tx, Taxon(None), tx)
 
         # various accessors: len
         bb = Taxa(tx, tx)
         len(bb)
     """
-    def __init__(self, *x):
+    def __init__(self, *taxa: Taxon):
       super(Taxa, self).__init__()
-      self.x = x
-      self.xlen = len(x)
+      self.taxa = list(taxa)
+      self.xlen = len(taxa)
 
     def __repr__(self):
-      no = "<taxa>\n  no. taxa: %d\n  " % len(self.x)
-      z = [self.print_taxon(z) for z in self.x[:10]]
+      no = "<taxa>\n  no. taxa: %d\n  " % len(self.taxa)
+      z = [self.print_taxon(z) for z in self.taxa[:10]]
       mssg = no + '\n  '.join(z)
       return mssg
 
@@ -48,12 +55,11 @@ class Taxa(object):
 
     @staticmethod
     def print_taxon(x):
-      if all(b is None for b in x.values()): 
+      if all(b is None for b in x.name.values()): 
         return "empty"
       else:
         return ' / '.join([
-          gt(x['name'], 'name', ""), 
-          gt(x['rank'], 'name', ""),
-          str(gt(x['id'], 'id', ""))
+          str(x.name.get('name')) or "", 
+          str(x.rank.get('name')) or "",
+          str(x.id.get('id')) or ""
         ])
-

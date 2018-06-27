@@ -4,10 +4,14 @@ pytaxa |version| documentation
 
 |pypi| |travis| |coverage|
 
-more coming ...
+Info
+====
 
-.. _issue tracker: https://github.com/sckott/pytaxa/issues
+* Minimum Python version: 3.5
+* pytaxa docs_
+* Check out sister R package: <https://github.com/ropensci/taxa>
 
+.. _docs: https://focused-neumann-123664.netlify.com
 
 Installation
 ============

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytaxa.taxa.taxa &mdash; pytaxa 0.0.1.4 documentation</title>
+  <title>pytaxa.taxa.taxa &mdash; pytaxa 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.4 documentation" href="../../../index.html"/>
+    <link rel="top" title="pytaxa 0.0.6 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.1.4
+                0.0.6
               </div>
             
           
@@ -172,15 +172,19 @@
             
   <h1>Source code for pytaxa.taxa.taxa</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.taxon</span> <span class="k">import</span> <span class="n">Taxon</span>
 
-<span class="k">class</span> <span class="nc">Taxa</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Taxa"><a class="viewcode-back" href="../../../modules/taxa.html#pytaxa.Taxa">[docs]</a><span class="k">class</span> <span class="nc">Taxa</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Taxa class</span>
 
 <span class="sd">    Stores one or more `taxon` objects. Prints first 10 taxa </span>
 <span class="sd">    for brevity sake.</span>
 
-<span class="sd">    Usage:::</span>
+<span class="sd">    :param taxa: Any number of objects of type `Taxon` resulting from a call to</span>
+<span class="sd">      :func:`~pytaxa.taxa.Taxon`</span>
+
+<span class="sd">    Usage::</span>
 <span class="sd">        </span>
 <span class="sd">        # make a taxon</span>
 <span class="sd">        from pytaxa import constructors as cs</span>
@@ -191,28 +195,31 @@
 <span class="sd">            &quot;NCBI Taxonomy Database&quot;, </span>
 <span class="sd">            &quot;*&quot;)</span>
 <span class="sd">        id = cs.taxon_id(12345, db)</span>
-<span class="sd">        tx = cs.taxon(name, rank, id, &quot;L.&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">        from pytaxa import Taxon</span>
+<span class="sd">        tx = Taxon(name, rank, id, &quot;L.&quot;)</span>
 <span class="sd">        </span>
 <span class="sd">        # combine many taxon&#39;s into taxa</span>
 <span class="sd">        from pytaxa import Taxa</span>
 <span class="sd">        Taxa(tx)</span>
 <span class="sd">        bb = Taxa(tx, tx)</span>
+<span class="sd">        bb</span>
 
 <span class="sd">        # handles empty taxon objects</span>
-<span class="sd">        Taxa(tx, cs.taxon(None), tx)</span>
+<span class="sd">        Taxa(tx, Taxon(None), tx)</span>
 
 <span class="sd">        # various accessors: len</span>
 <span class="sd">        bb = Taxa(tx, tx)</span>
 <span class="sd">        len(bb)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">taxa</span><span class="p">:</span> <span class="n">Taxon</span><span class="p">):</span>
       <span class="nb">super</span><span class="p">(</span><span class="n">Taxa</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">taxa</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">xlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxa</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-      <span class="n">no</span> <span class="o">=</span> <span class="s2">&quot;&lt;taxa&gt;</span><span class="se">\n</span><span class="s2">  no. taxa: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-      <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">print_taxon</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+      <span class="n">no</span> <span class="o">=</span> <span class="s2">&quot;&lt;taxa&gt;</span><span class="se">\n</span><span class="s2">  no. taxa: </span><span class="si">%d</span><span class="se">\n</span><span class="s2">  &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">)</span>
+      <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">print_taxon</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taxa</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
       <span class="n">mssg</span> <span class="o">=</span> <span class="n">no</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
       <span class="k">return</span> <span class="n">mssg</span>
 
@@ -221,15 +228,14 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">print_taxon</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-      <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span> 
+      <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">b</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span> 
         <span class="k">return</span> <span class="s2">&quot;empty&quot;</span>
       <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39; / &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
-          <span class="n">gt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> 
-          <span class="n">gt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
-          <span class="nb">str</span><span class="p">(</span><span class="n">gt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+          <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> 
+          <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">rank</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+          <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span></div>
         <span class="p">])</span>
-
 </pre></div>
 
            </div>
@@ -266,7 +272,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.1.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

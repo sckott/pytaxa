@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing &mdash; pytaxa 0.0.1.4 documentation</title>
+  <title>Contributing &mdash; pytaxa 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.4 documentation" href="index.html"/>
+    <link rel="top" title="pytaxa 0.0.6 documentation" href="index.html"/>
         <link rel="next" title="Contributor Code of Conduct" href="conduct.html"/>
         <link rel="prev" title="Contributors" href="contributors.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1.4
+                0.0.6
               </div>
             
           
@@ -181,8 +181,9 @@
 <span id="id1"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
-<p class="last">Double check you are reading the most recent version of this document at
-<a class="reference external" href="http://pytaxa.readthedocs.io/en/latest/index.html">http://pytaxa.readthedocs.io/en/latest/index.html</a></p>
+<p>Double check you are reading the most recent version of this document at
+<a class="reference external" href="https://focused-neumann-123664.netlify.com/">https://focused-neumann-123664.netlify.com/</a></p>
+<p class="last">pytaxa is a python 3 project.</p>
 </div>
 <div class="section" id="bug-reports">
 <h2>Bug reports<a class="headerlink" href="#bug-reports" title="Permalink to this headline">¶</a></h2>
@@ -194,26 +195,14 @@
 </div>
 <div class="section" id="pull-requests">
 <h2>Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h2>
-<p>When you submit a PR you’ll see a template that pops up - it’s reproduced
-here.</p>
-<ul class="simple">
-<li>Provide a general summary of your changes in the Title</li>
-<li>Describe your changes in detail</li>
-<li>If the PR closes an issue make sure include e.g., <cite>fix #4</cite> or similar,
-or if just relates to an issue make sure to mention it like <cite>#4</cite></li>
-<li>If introducing a new feature or changing behavior of existing
-methods/functions, include an example if possible to do in brief form</li>
-<li>Did you remember to include tests? Unless you’re changing docs/grammar,
-please include new tests for your change</li>
-</ul>
+<p>When you submit a PR you’ll see a template that pops up with instructions.</p>
 </div>
 <div class="section" id="writing-tests">
 <h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
-<p>We’re using <cite>nosetests</cite> for testing. See the <a class="reference external" href="http://nose.readthedocs.io/en/latest/">nosetests docs</a> for
+<p>We’re using <cite>pytest</cite> for testing. See the <a class="reference external" href="https://doc.pytest.org/">pytest docs</a> for
 help on contributing to or writing tests.</p>
-<p>The Makefile has tasks for testing under python 2 and 3</p>
+<p>The Makefile has a task for testing 3 only</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
-make test3
 </pre></div>
 </div>
 </div>
@@ -263,7 +252,7 @@ make test3
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.1.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

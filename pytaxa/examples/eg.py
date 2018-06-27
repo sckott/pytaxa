@@ -5,7 +5,7 @@ def eg_hierarchy(which = "poa"):
   """
     Hierarchy example objects
 
-    Usage:::
+    Usage::
         
         from pytaxa import examples
         examples.eg_hierarchy("poa")

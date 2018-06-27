@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>taxa module &mdash; pytaxa 0.0.1.4 documentation</title>
+  <title>taxa module &mdash; pytaxa 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="pytaxa 0.0.1.4 documentation" href="../index.html"/>
+    <link rel="top" title="pytaxa 0.0.6 documentation" href="../index.html"/>
         <link rel="next" title="examples module" href="examples.html"/>
         <link rel="prev" title="constructors module" href="constructors.html"/> 
 
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1.4
+                0.0.6
               </div>
             
           
@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="constructors.html">constructors module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">taxa module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytaxa">taxa API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytaxa">Hierarchy functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">examples module</a></li>
@@ -203,12 +204,29 @@
 </div>
 <div class="section" id="module-pytaxa">
 <span id="taxa-api"></span><h2>taxa API<a class="headerlink" href="#module-pytaxa" title="Permalink to this headline">¶</a></h2>
-<dl class="method">
-<dt id="pytaxa.taxa.Taxon">
-<code class="descclassname">taxa.</code><code class="descname">Taxon</code><span class="sig-paren">(</span><em>rank: Union[str</em>, <em>dict] = {}</em>, <em>id: Union[str</em>, <em>dict] = {}</em>, <em>authority: str = ''</em><span class="sig-paren">)</span><a class="headerlink" href="#pytaxa.taxa.Taxon" title="Permalink to this definition">¶</a></dt>
+<dl class="class">
+<dt id="pytaxa.Taxon">
+<em class="property">class </em><code class="descclassname">pytaxa.</code><code class="descname">Taxon</code><span class="sig-paren">(</span><em>name: Union[str</em>, <em>dict] = {}</em>, <em>rank: Union[str</em>, <em>dict] = {}</em>, <em>id: Union[str</em>, <em>dict] = {}</em>, <em>authority: str = ''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/taxon.html#Taxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Taxon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxon class</p>
 <p>Create a <cite>taxon</cite> object</p>
-<p>Usage::</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> – A dict resulting from a call to <a class="reference internal" href="constructors.html#pytaxa.constructors.taxon_name" title="pytaxa.constructors.taxon_name"><code class="xref py py-func docutils literal notranslate"><span class="pre">taxon_name()</span></code></a>
+with <cite>name</cite> and <cite>database</cite> keys, or a name as a <cite>str</cite></li>
+<li><strong>rank</strong> – A dict resulting from a call to <a class="reference internal" href="constructors.html#pytaxa.constructors.taxon_rank" title="pytaxa.constructors.taxon_rank"><code class="xref py py-func docutils literal notranslate"><span class="pre">taxon_rank()</span></code></a>
+with <cite>name</cite> and <cite>database</cite> keys, or a name as a <cite>str</cite></li>
+<li><strong>id</strong> – A dict resulting from a call to <a class="reference internal" href="constructors.html#pytaxa.constructors.taxon_id" title="pytaxa.constructors.taxon_id"><code class="xref py py-func docutils literal notranslate"><span class="pre">taxon_id()</span></code></a>
+with <cite>id</cite> and <cite>database</cite> keys, or an identifier as an <cite>int</cite></li>
+<li><strong>authority</strong> – An authority name as a <cite>str</cite></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
 <span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Taxon</span>
 <span class="n">name</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">)</span>
@@ -233,13 +251,22 @@
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="pytaxa.taxa.Taxa">
-<code class="descclassname">taxa.</code><code class="descname">Taxa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytaxa.taxa.Taxa" title="Permalink to this definition">¶</a></dt>
+<dl class="class">
+<dt id="pytaxa.Taxa">
+<em class="property">class </em><code class="descclassname">pytaxa.</code><code class="descname">Taxa</code><span class="sig-paren">(</span><em>*taxa</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/taxa.html#Taxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Taxa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Taxa class</p>
 <p>Stores one or more <cite>taxon</cite> objects. Prints first 10 taxa 
 for brevity sake.</p>
-<p>Usage::</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>taxa</strong> – Any number of objects of type <cite>Taxon</cite> resulting from a call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">Taxon()</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a taxon</span>
 <span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
 <span class="n">name</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">)</span>
@@ -249,15 +276,18 @@ for brevity sake.</p>
     <span class="s2">&quot;NCBI Taxonomy Database&quot;</span><span class="p">,</span> 
     <span class="s2">&quot;*&quot;</span><span class="p">)</span>
 <span class="nb">id</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
-<span class="n">tx</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;L.&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Taxon</span>
+<span class="n">tx</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;L.&quot;</span><span class="p">)</span>
 
 <span class="c1"># combine many taxon&#39;s into taxa</span>
 <span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Taxa</span>
 <span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">)</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">tx</span><span class="p">)</span>
+<span class="n">bb</span>
 
 <span class="c1"># handles empty taxon objects</span>
-<span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">tx</span><span class="p">)</span>
+<span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">Taxon</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">tx</span><span class="p">)</span>
 
 <span class="c1"># various accessors: len</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="n">Taxa</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">tx</span><span class="p">)</span>
@@ -266,9 +296,9 @@ for brevity sake.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="pytaxa.taxa.Hierarchy">
-<code class="descclassname">taxa.</code><code class="descname">Hierarchy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytaxa.taxa.Hierarchy" title="Permalink to this definition">¶</a></dt>
+<dl class="class">
+<dt id="pytaxa.Hierarchy">
+<em class="property">class </em><code class="descclassname">pytaxa.</code><code class="descname">Hierarchy</code><span class="sig-paren">(</span><em>*taxa</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/hierarchy.html#Hierarchy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Hierarchy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hierarchy class</p>
 <p>Stores one or more <cite>taxon</cite> objects. Prints first 10 taxa 
 for brevity sake.</p>
@@ -276,7 +306,19 @@ for brevity sake.</p>
 operations don’t change the inputs to <cite>Hierarchy</cite>. The deep copy is 
 made at initialization, so if you don’t re-initialize changes made to the 
 hierarchy by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
-<p>Usage::</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>taxa</strong> – Any number of objects of type <cite>Taxon</cite> resulting from a call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">Taxon()</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">object of class Hierarchy</td>
+</tr>
+</tbody>
+</table>
+<p>see also <a class="reference internal" href="#hierarchy-methods"><span class="std std-ref">Hierarchy functions</span></a></p>
+<p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
 <span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">Taxon</span>
 
@@ -339,9 +381,9 @@ hierarchy by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="pytaxa.taxa.Hierarchies">
-<code class="descclassname">taxa.</code><code class="descname">Hierarchies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytaxa.taxa.Hierarchies" title="Permalink to this definition">¶</a></dt>
+<dl class="class">
+<dt id="pytaxa.Hierarchies">
+<em class="property">class </em><code class="descclassname">pytaxa.</code><code class="descname">Hierarchies</code><span class="sig-paren">(</span><em>*hir</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/hierarchy.html#Hierarchies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Hierarchies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hierarchies class</p>
 <p>Stores one or more <cite>Hierarchy</cite> objects. Prints first 10 Hierarchy’s 
 for brevity.</p>
@@ -349,7 +391,18 @@ for brevity.</p>
 operations don’t change the inputs to <cite>Hierarchies</cite>. The deep copy is 
 made at initialization, so if you don’t re-initialize changes made to the 
 hierarchies by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
-<p>Usage::</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hir</strong> – Any number of objects of type <cite>Hierarchy</cite> resulting from a call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">Hierarchy()</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">object of class Hierarchy</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## example Hierarchy objects</span>
 <span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">examples</span>
 <span class="n">ex1</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;poa&quot;</span><span class="p">)</span>
@@ -369,6 +422,79 @@ hierarchies by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
 <span class="n">x</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;genus&quot;</span><span class="p">)</span>
 <span class="n">x</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;genus&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">])</span>
 <span class="n">x</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pytaxa">
+<span id="hierarchy-functions"></span><span id="hierarchy-methods"></span><h2>Hierarchy functions<a class="headerlink" href="#module-pytaxa" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
+<dt id="pytaxa.Hierarchy.all_empty">
+<code class="descclassname">Hierarchy.</code><code class="descname">all_empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/hierarchy.html#Hierarchy.all_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Hierarchy.all_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if all taxa are empty</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytaxa.Hierarchy.pop">
+<code class="descclassname">Hierarchy.</code><code class="descname">pop</code><span class="sig-paren">(</span><em>ranks=None</em>, <em>names=None</em>, <em>ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/hierarchy.html#Hierarchy.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Hierarchy.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop out certain taxa by ranks, names, or ids</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ranks</strong> – rank names as <cite>str</cite></li>
+<li><strong>names</strong> – taxonomic names as <cite>str</cite></li>
+<li><strong>ids</strong> – taxonomic identifiers as <cite>str</cite> or <cite>int</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">self, object of class Hierarchy</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">examples</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
+<span class="n">ex</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;family&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pytaxa.Hierarchy.pick">
+<code class="descclassname">Hierarchy.</code><code class="descname">pick</code><span class="sig-paren">(</span><em>ranks=None</em>, <em>names=None</em>, <em>ids=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pytaxa/taxa/hierarchy.html#Hierarchy.pick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pytaxa.Hierarchy.pick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick certain taxa by ranks, names, or ids</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ranks</strong> – rank names as <cite>str</cite></li>
+<li><strong>names</strong> – taxonomic names as <cite>str</cite></li>
+<li><strong>ids</strong> – taxonomic identifiers as <cite>str</cite> or <cite>int</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">self, object of class Hierarchy</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="k">import</span> <span class="n">examples</span>
+<span class="n">ex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">eg_hierarchy</span><span class="p">(</span><span class="s2">&quot;salmo&quot;</span><span class="p">)</span>
+<span class="n">ex</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salmo&quot;</span><span class="p">,</span> <span class="s2">&quot;Chordata&quot;</span><span class="p">,</span> <span class="s2">&quot;Teleostei&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -420,7 +546,7 @@ hierarchies by <cite>pop</cite>/<cite>pick</cite>/etc persist.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.1.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

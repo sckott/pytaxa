@@ -8,7 +8,15 @@ class Taxon(object):
 
     Create a `taxon` object
 
-    Usage:::
+    :param name: A dict resulting from a call to :func:`~pytaxa.constructors.taxon_name`
+      with `name` and `database` keys, or a name as a `str`
+    :param rank: A dict resulting from a call to :func:`~pytaxa.constructors.taxon_rank`
+      with `name` and `database` keys, or a name as a `str`
+    :param id: A dict resulting from a call to :func:`~pytaxa.constructors.taxon_id`
+      with `id` and `database` keys, or an identifier as an `int`
+    :param authority: An authority name as a `str`
+
+    Usage::
         
         from pytaxa import constructors as cs
         from pytaxa import Taxon
@@ -60,28 +68,3 @@ class Taxon(object):
 
     def is_empty(self):
       return not self.name and not self.rank and not self.id
-
-# def taxon(name, rank = None, id = None, authority = None):
-#     '''
-#     Make a taxon
-
-#     :param name: [String] A taxonomic name
-#     :param rank: [String] A rank name
-#     :param id: [String] A taxonomic identifier
-#     :param authority: [String] A taxonomic authority
-
-#     :return: A dict
-
-#     Usage::
-
-#         from pytaxa import constructors as cs
-#         name = cs.taxon_name("Poa")
-#         rank = cs.taxon_rank("genus", "ncbi")
-#         db = cs.taxon_database("ncbi", 
-#             "http://www.ncbi.nlm.nih.gov/taxonomy",
-#             "NCBI Taxonomy Database", 
-#             "*")
-#         id = cs.taxon_id(12345, db)
-#         cs.taxon(name, rank, id, "L.")
-#     '''
-#     return {"name": name, "rank": rank, "id": id, "authority": authority}
