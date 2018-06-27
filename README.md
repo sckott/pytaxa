@@ -14,6 +14,13 @@ pytaxa
 
 ## Installation
 
+Stable version
+
+```sh
+pip install pytaxa
+pip3 install pytaxa
+```
+
 Dev version
 
 ```sh
