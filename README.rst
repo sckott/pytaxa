@@ -66,6 +66,11 @@ Usage
     out.all_empty()
     out.pop(ranks = "family")
 
+Contributing
+============
+
+See `CONTRIBUTING.md <https://github.com/sckott/pytaxa/blob/master/.github/CONTRIBUTING.md>`_
+
 Meta
 ====
 
