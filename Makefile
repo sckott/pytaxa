@@ -22,8 +22,8 @@ dist:
 	python3 setup.py sdist
 	python3 setup.py bdist_wheel --universal
 
-register:
-	python3 setup.py register
+uptest:
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 upload:
 	twine upload dist/*
