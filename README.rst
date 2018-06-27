@@ -35,7 +35,7 @@ Dev version
 Usage
 =====
 
-.. code-block:: console
+.. code-block:: python
 
     from pytaxa import constructors as cs
     cs.taxon_name("Poa")
