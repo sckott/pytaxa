@@ -60,7 +60,7 @@ Usage
     Taxa(tx1, tx2, tx3)
 
     from pytaxa import Hierarchy
-    out = Hierarchy(tx1, tx2, tx)
+    out = Hierarchy(tx1, tx2, tx3)
     out.taxa
     out.ranklist
     out.all_empty()
