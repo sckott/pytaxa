@@ -27,6 +27,12 @@ def test_Taxon():
     assert isinstance(x.rank, dict)
     assert len(x.rank) > 0
     assert x.is_empty() is False
+    assert (
+        '<Taxon>\n'
+        '  name: Poa\n'
+        '  rank: genus\n'
+        '  id: 12345\n'
+        '  authority: L.' == repr(x))
 
 def test_Taxon_empty():
     "Taxon - empty"
@@ -43,3 +49,9 @@ def test_Taxon_empty():
     assert isinstance(x.rank, dict)
     assert len(x.rank) == 0
     assert x.is_empty()
+    assert (
+       '<Taxon>\n'
+       '  name: None\n'
+       '  rank: None\n'
+       '  id: None\n'
+       '  authority: ' == repr(x))
