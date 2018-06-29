@@ -28,6 +28,8 @@ def test_Hierarchy():
     assert isinstance(x.ranklist, list)
     assert isinstance(x.xlen, int)
     assert 3 == len(x)
+    assert x == x.pop()
+
 
 def test_Hierarchy_empty():
     "Hierarchy - empty"
@@ -40,6 +42,8 @@ def test_Hierarchy_empty():
     assert x.ranklist is None
     assert isinstance(x.xlen, int)
     assert 1 == len(x)
+    with pytest.raises(ValueError):
+        x.pop()
 
 def test_print_taxon():
     assert 'empty' == Hierarchy.print_taxon(Taxon())
