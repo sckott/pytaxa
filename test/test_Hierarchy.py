@@ -40,3 +40,7 @@ def test_Hierarchy_empty():
     assert x.ranklist is None
     assert isinstance(x.xlen, int)
     assert 1 == len(x)
+
+def test_print_taxon():
+    assert 'empty' == Hierarchy.print_taxon(Taxon())
+    assert 'Poa annua / species / 93036' == Hierarchy.print_taxon(tx3)
