@@ -28,7 +28,23 @@ def test_Hierarchy():
     assert isinstance(x.ranklist, list)
     assert isinstance(x.xlen, int)
     assert 3 == len(x)
-    assert x == x.pop()
+    assert repr(x) == repr(x.pop())  # .pop() with no args is a no-op.
+
+    x.pop(ranks='FAKE')
+    assert 3 == len(x)
+    x.pop(ranks='genus')
+    assert 2 == len(x)
+
+    x.pop(names='FAKE')
+    assert 2 == len(x)
+    x.pop(names='Poaceae')
+    assert 1 == len(x)
+
+    x.pop(ids='FAKE')
+    assert 1 == len(x)
+    x.pop(ids=93036)
+    assert 0 == len(x)
+
 
 
 def test_Hierarchy_empty():
