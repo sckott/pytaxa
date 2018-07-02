@@ -33,3 +33,6 @@ scratch.py
 
 # tests
 .pytest_cache/
+
+# particular files
+old_utils.py
