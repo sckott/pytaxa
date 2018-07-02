@@ -29,6 +29,12 @@ def test_Taxa():
     assert isinstance(x.taxa[2], Taxon)
     assert isinstance(x.xlen, int)
     assert 3 == len(x)
+    assert (
+        '<taxa>\n'
+        '  no. taxa: 3\n'
+        '  Poa annua / species / 93036\n'
+        '  Poaceae / family / 4479\n'
+        '  Poa / genus / 12345' == repr(x))
 
 def test_Taxa_empty():
     "Taxa - empty"
@@ -40,3 +46,4 @@ def test_Taxa_empty():
     assert x.taxa[0].is_empty()
     assert isinstance(x.xlen, int)
     assert 1 == len(x)
+    assert '<taxa>\n  no. taxa: 1\n  empty' == repr(x)
