@@ -32,7 +32,7 @@ setup(
   install_requires = ['requests>=2.19.0'],
   python_requires  = '>=3.5',
   tests_require    = ["pytest", "pytest-cov"],
-  classifiers      = (
+  classifiers      = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Science/Research',
     'Intended Audience :: Developers',
@@ -43,5 +43,5 @@ setup(
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6'
-	)
+	]
 )
