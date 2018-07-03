@@ -46,20 +46,9 @@ class Taxa(object):
 
     def __repr__(self):
       no = "<taxa>\n  no. taxa: %d\n  " % len(self.taxa)
-      z = [self.print_taxon(z) for z in self.taxa[:10]]
+      z = [z.print_taxon() for z in self.taxa[:10]]
       mssg = no + '\n  '.join(z)
       return mssg
 
     def __len__(self):
       return self.xlen
-
-    @staticmethod
-    def print_taxon(x):
-      if all(b is None for b in x.name.values()): 
-        return "empty"
-      else:
-        return ' / '.join([
-          str(x.name.get('name')) or "", 
-          str(x.rank.get('name')) or "",
-          str(x.id.get('id')) or ""
-        ])

@@ -102,24 +102,13 @@ class Hierarchy(object):
       elif self.taxa[0].is_empty(): 
         txt = "Empty hierarchy\n  "
       else:
-        z = [self.print_taxon(z) for z in self.taxa[:10]]
+        z = [z.print_taxon() for z in self.taxa[:10]]
         no_taxa = "no. taxon's: %d\n  " % len(self.taxa)
         txt = '\n  '.join(z)
       return hier + txt
 
     def __len__(self):
       return self.xlen
-
-    @staticmethod
-    def print_taxon(x):
-      if all(b is None for b in x.name.values()): 
-        return "empty"
-      else:
-        return ' / '.join([
-          str(x.name.get('name')) or "", 
-          str(x.rank.get('name')) or "",
-          str(x.id.get('id')) or ""
-        ])
 
     def __sort_hierarchy(self, x):
       if (len(x) == 0):

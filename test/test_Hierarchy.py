@@ -80,7 +80,3 @@ def test_Hierarchy_empty():
     assert 1 == len(x)
     with pytest.raises(ValueError):
         x.pop()
-
-def test_print_taxon():
-    assert 'empty' == Hierarchy.print_taxon(Taxon())
-    assert 'Poa annua / species / 93036' == Hierarchy.print_taxon(tx3)

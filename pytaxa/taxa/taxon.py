@@ -52,10 +52,6 @@ class Taxon(object):
       self.authority = authority
 
     def __repr__(self):
-      mssg = self.print_taxon()
-      return mssg
-
-    def print_taxon(self):
       tx = "<Taxon>\n  "
       txt = [
         'name: ' + str(self.name.get('name')) or "", 
@@ -66,5 +62,15 @@ class Taxon(object):
       mssg = tx + '\n  '.join(txt)
       return mssg
 
+    def print_taxon(self):
+      if all(b is None for b in self.name.values()): 
+        return "empty"
+      else:
+        return ' / '.join([
+          str(self.name.get('name')) or "", 
+          str(self.rank.get('name')) or "",
+          str(self.id.get('id')) or ""
+        ])
+    
     def is_empty(self):
       return not self.name and not self.rank and not self.id
