@@ -136,7 +136,7 @@ class Hierarchy(object):
       """
       return all([z.is_empty() for z in self.taxa])
 
-    def pop(self, ranks = None, names = None, ids = None):
+    def pop(self, ranks = [], names = [], ids = []):
       """
       Pop out certain taxa by ranks, names, or ids
 
@@ -158,10 +158,17 @@ class Hierarchy(object):
       if (not any([ranks, names, ids])):
         raise ValueError("one of 'ranks', 'names', or 'ids' must be used")
 
+      if type(ranks) == str:
+        ranks = [ranks]
+      if type(names) == str:
+        names = [names]
+      if type(ids) == int:
+        ids = [ids]
+
       self.taxa = [w for w in self.taxa if 
-        w.rank.get('name') != ranks and 
-        w.name.get('name') != names and 
-        w.id.get('id') != ids]
+        w.rank.get('name') not in ranks and
+        w.name.get('name') not in names and
+        w.id.get('id') not in ids]
 
       self.taxa = self.__sort_hierarchy(self.taxa)
       self.xlen = len(self.taxa)
