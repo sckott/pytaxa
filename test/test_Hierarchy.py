@@ -64,9 +64,12 @@ def test_Hierarchy_pop():
     x.pop(names=['FAKE', 'Poaceae'])
     assert 1 == len(x)
 
-    x.pop(ids=0)
+    with pytest.raises(ValueError):
+        x.pop(ids=0)
+
+    x.pop(ids=1)
     assert 1 == len(x)
-    x.pop(ids=[0, 93036])
+    x.pop(ids=[1, 93036])
     assert 0 == len(x)
 
 def test_Hierarchy_empty():
