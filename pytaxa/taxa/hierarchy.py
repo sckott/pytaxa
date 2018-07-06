@@ -154,14 +154,9 @@ class Hierarchy(object):
       """
       if self.all_empty():
         raise ValueError("no taxa found")
-      
-      alldat = [ranks, names, ids]
-      if (len(alldat) == 0):
+
+      if (not any([ranks, names, ids])):
         raise ValueError("one of 'ranks', 'names', or 'ids' must be used")
-      
-      taxa_rks = [z.rank.get('name') for z in self.taxa]
-      taxa_nms = [z.name.get('name') for z in self.taxa]
-      taxa_ids = [z.id.get('id') for z in self.taxa]
 
       self.taxa = [w for w in self.taxa if 
         w.rank.get('name') != ranks and 
@@ -190,9 +185,8 @@ class Hierarchy(object):
       """
       if self.all_empty():
         raise ValueError("no taxa found")
-      
-      alldat = [ranks, names, ids]
-      if (len(alldat) == 0):
+
+      if (not any([ranks, names, ids])):
         raise ValueError("one of 'ranks', 'names', or 'ids' must be used")
       
       self.taxa = [
