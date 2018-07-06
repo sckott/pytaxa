@@ -38,8 +38,9 @@ Usage
 .. code-block:: python
 
     >>> from pytaxa import constructors as cs
-    >>> cs.taxon_name("Poa")
-    {'name': 'Poa', 'database': None}
+    >>> tn = cs.taxon_name("Poa")
+    >>> tn['name']
+    'Poa'
 
     >>> from pytaxa import Taxon
     >>> x = Taxon(None)
