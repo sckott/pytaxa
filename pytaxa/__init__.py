@@ -45,7 +45,7 @@ Usage::
 '''
 
 __title__ = 'pytaxa'
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 __author__ = 'Scott Chamberlain'
 __license__ = 'MIT'
 
