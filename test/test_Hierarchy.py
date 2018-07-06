@@ -59,12 +59,12 @@ def test_Hierarchy_pop():
 
     x.pop(names='FAKE')
     assert 2 == len(x)
-    x.pop(names='Poaceae')
+    x.pop(names=['FAKE', 'Poaceae'])
     assert 1 == len(x)
 
-    x.pop(ids='FAKE')
+    x.pop(ids=0)
     assert 1 == len(x)
-    x.pop(ids=93036)
+    x.pop(ids=[0, 93036])
     assert 0 == len(x)
 
 def test_Hierarchy_empty():
