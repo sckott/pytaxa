@@ -37,34 +37,59 @@ Usage
 
 .. code-block:: python
 
-    from pytaxa import constructors as cs
-    cs.taxon_name("Poa")
-    
-    from pytaxa import Taxon
-    x = Taxon(None)
-    x.is_empty()
+    >>> from pytaxa import constructors as cs
+    >>> cs.taxon_name("Poa")
+    {'name': 'Poa', 'database': None}
 
-    name = cs.taxon_name("Poa")
-    rank = cs.taxon_rank("genus", "ncbi")
-    db = cs.taxon_database("ncbi", 
-      "http://www.ncbi.nlm.nih.gov/taxonomy",
-      "NCBI Taxonomy Database", 
-      "*")
-    id = cs.taxon_id(12345, db)
-    tx1 = Taxon(name, rank, id, "L.")
-    tx2 = Taxon(cs.taxon_name("Poaceae"), 
-      cs.taxon_rank("family", "ncbi"), cs.taxon_id(4479, db))
-    tx3 = Taxon(cs.taxon_name("Poa annua"), 
-      cs.taxon_rank("species", "ncbi"), cs.taxon_id(93036, db))
-    from pytaxa import Taxa
-    Taxa(tx1, tx2, tx3)
+    >>> from pytaxa import Taxon
+    >>> x = Taxon(None)
+    >>> x.is_empty()
+    True
 
-    from pytaxa import Hierarchy
-    out = Hierarchy(tx1, tx2, tx3)
-    out.taxa
-    out.ranklist
-    out.all_empty()
-    out.pop(ranks = "family")
+    >>> name = cs.taxon_name("Poa")
+    >>> rank = cs.taxon_rank("genus", "ncbi")
+    >>> db = cs.taxon_database("ncbi",
+    ...   "http://www.ncbi.nlm.nih.gov/taxonomy",
+    ...   "NCBI Taxonomy Database",
+    ...   "*")
+    >>> id = cs.taxon_id(12345, db)
+    >>> tx1 = Taxon(name, rank, id, "L.")
+    >>> tx2 = Taxon(cs.taxon_name("Poaceae"),
+    ...   cs.taxon_rank("family", "ncbi"), cs.taxon_id(4479, db))
+    >>> tx3 = Taxon(cs.taxon_name("Poa annua"),
+    ...   cs.taxon_rank("species", "ncbi"), cs.taxon_id(93036, db))
+    >>> from pytaxa import Taxa
+    >>> Taxa(tx1, tx2, tx3)
+    <taxa>
+      no. taxa: 3
+      Poa / genus / 12345
+      Poaceae / family / 4479
+      Poa annua / species / 93036
+
+    >>> from pytaxa import Hierarchy
+    >>> out = Hierarchy(tx1, tx2, tx3)
+    >>> out.taxa
+    [<Taxon>
+      name: Poaceae
+      rank: family
+      id: 4479
+      authority: , <Taxon>
+      name: Poa
+      rank: genus
+      id: 12345
+      authority: L., <Taxon>
+      name: Poa annua
+      rank: species
+      id: 93036
+      authority: ]
+    >>> out.ranklist
+    ['180', '140', '220']
+    >>> out.all_empty()
+    False
+    >>> out.pop(ranks = "family")
+    <Hierarchy>
+      Poa / genus / 12345
+      Poa annua / species / 93036
 
 Contributing
 ============
