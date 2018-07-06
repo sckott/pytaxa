@@ -33,7 +33,8 @@ def test_Hierarchy():
 def test_Hierarchy_pick():
     x = Hierarchy(tx3, tx1, tx2)
 
-    assert 0 == len(copy(x).pick())
+    with pytest.raises(ValueError):
+        copy(x).pick()
     assert 1 == len(copy(x).pick(ranks='family'))
     assert 1 == len(copy(x).pick(ranks='genus'))
     assert 1 == len(copy(x).pick(ranks='species'))
@@ -50,7 +51,8 @@ def test_Hierarchy_pick():
 def test_Hierarchy_pop():
     x = Hierarchy(tx3, tx1, tx2)
 
-    assert repr(x) == repr(x.pop())  # .pop() with no args is a no-op.
+    with pytest.raises(ValueError):
+        x.pop()
 
     x.pop(ranks='FAKE')
     assert 3 == len(x)
