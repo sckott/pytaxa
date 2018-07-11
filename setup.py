@@ -24,7 +24,7 @@ setup(
 	version          = version,
 	description      = 'Taxonomic Classes',
 	long_description = long_description,
-  author           = 'Scott Chamberlain',
+  author           = 'Scott Chamberlain,Chuck McCallum',
   author_email     = 'sckott@protonmail.com',
   url              = 'https://github.com/sckott/pytaxa',
   license          = 'MIT',

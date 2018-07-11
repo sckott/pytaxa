@@ -97,6 +97,12 @@ Contributing
 
 See `CONTRIBUTING.md <https://github.com/sckott/pytaxa/blob/master/.github/CONTRIBUTING.md>`_
 
+Contributors
+============
+
+* Scott Chamberlain
+* Chuck McCallum
+
 Meta
 ====
 

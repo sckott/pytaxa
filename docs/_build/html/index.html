@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytaxa 0.0.6 documentation &mdash; pytaxa 0.0.6 documentation</title>
+  <title>pytaxa 0.0.7 documentation &mdash; pytaxa 0.0.7 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                0.0.6
+                0.0.7
               </div>
             
           
@@ -144,7 +144,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>pytaxa 0.0.6 documentation</li>
+      <li>pytaxa 0.0.7 documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,7 +164,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="pytaxa-version-documentation">
-<h1>pytaxa 0.0.6 documentation<a class="headerlink" href="#pytaxa-version-documentation" title="Permalink to this headline">¶</a></h1>
+<h1>pytaxa 0.0.7 documentation<a class="headerlink" href="#pytaxa-version-documentation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://pypi.python.org/pypi/pytaxa"><img alt="pypi" src="https://img.shields.io/pypi/v/pytaxa.svg" /></a> <a class="reference external" href="https://travis-ci.org/sckott/pytaxa"><img alt="travis" src="https://travis-ci.org/sckott/pytaxa.svg" /></a> <a class="reference external" href="https://codecov.io/gh/sckott/pytaxa"><img alt="coverage" src="https://codecov.io/gh/sckott/pytaxa/branch/master/graph/badge.svg" /></a></p>
 <div class="section" id="info">
 <h2>Info<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h2>
@@ -182,6 +182,65 @@
 <dt><a class="reference internal" href="intro/install.html"><span class="doc">Installation guide</span></a></dt>
 <dd>How to install pytaxa.</dd>
 </dl>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="kn">import</span> <span class="n">constructors</span> <span class="k">as</span> <span class="n">cs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tn</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tn</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+<span class="go">&#39;Poa&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="kn">import</span> <span class="n">Taxon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rank</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;genus&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_database</span><span class="p">(</span><span class="s2">&quot;ncbi&quot;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="s2">&quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="s2">&quot;NCBI Taxonomy Database&quot;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tx1</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;L.&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tx2</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poaceae&quot;</span><span class="p">),</span>
+<span class="gp">... </span>  <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">4479</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tx3</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">taxon_name</span><span class="p">(</span><span class="s2">&quot;Poa annua&quot;</span><span class="p">),</span>
+<span class="gp">... </span>  <span class="n">cs</span><span class="o">.</span><span class="n">taxon_rank</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;ncbi&quot;</span><span class="p">),</span> <span class="n">cs</span><span class="o">.</span><span class="n">taxon_id</span><span class="p">(</span><span class="mi">93036</span><span class="p">,</span> <span class="n">db</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="kn">import</span> <span class="n">Taxa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Taxa</span><span class="p">(</span><span class="n">tx1</span><span class="p">,</span> <span class="n">tx2</span><span class="p">,</span> <span class="n">tx3</span><span class="p">)</span>
+<span class="go">&lt;taxa&gt;</span>
+<span class="go">  no. taxa: 3</span>
+<span class="go">  Poa / genus / 12345</span>
+<span class="go">  Poaceae / family / 4479</span>
+<span class="go">  Poa annua / species / 93036</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pytaxa</span> <span class="kn">import</span> <span class="n">Hierarchy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span> <span class="o">=</span> <span class="n">Hierarchy</span><span class="p">(</span><span class="n">tx1</span><span class="p">,</span> <span class="n">tx2</span><span class="p">,</span> <span class="n">tx3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="o">.</span><span class="n">taxa</span>
+<span class="go">[&lt;Taxon&gt;</span>
+<span class="go">  name: Poaceae</span>
+<span class="go">  rank: family</span>
+<span class="go">  id: 4479</span>
+<span class="go">  authority: , &lt;Taxon&gt;</span>
+<span class="go">  name: Poa</span>
+<span class="go">  rank: genus</span>
+<span class="go">  id: 12345</span>
+<span class="go">  authority: L., &lt;Taxon&gt;</span>
+<span class="go">  name: Poa annua</span>
+<span class="go">  rank: species</span>
+<span class="go">  id: 93036</span>
+<span class="go">  authority: ]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="o">.</span><span class="n">ranklist</span>
+<span class="go">[&#39;180&#39;, &#39;140&#39;, &#39;220&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="o">.</span><span class="n">all_empty</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ranks</span> <span class="o">=</span> <span class="s2">&quot;family&quot;</span><span class="p">)</span>
+<span class="go">&lt;Hierarchy&gt;</span>
+<span class="go">  Poa / genus / 12345</span>
+<span class="go">  Poa annua / species / 93036</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
@@ -265,7 +324,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.6',
+            VERSION:'0.0.7',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
